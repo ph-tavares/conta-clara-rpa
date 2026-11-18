@@ -1,0 +1,13 @@
+__pycache__/
+*.pyc
+.venv/
+venv/
+.env
+*.env.local
+# estado local do robo (cache da ANEEL e controle de alertas enviados)
+estado/
+# planilhas reais com codigos de casa nunca vao para o Git
+entrada/*.real.csv
+entrada/privado/
+# arquivos temporarios dos prints
+tmp/

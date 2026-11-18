@@ -1,0 +1,5 @@
+# Casas cadastradas no MVP que o robo acompanha. O codigo da casa funciona como senha no MVP:
+# em producao este arquivo NAO vai para o Git (vem de um GitHub Secret). Aqui so a casa de
+# DEMONSTRACAO, cujo codigo e publico no proprio MVP (/#demonstracao).
+apelido,codigo_casa,limite_reais
+MVP-DEMO,demonstracao,150

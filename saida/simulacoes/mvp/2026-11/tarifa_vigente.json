@@ -1,0 +1,38 @@
+{
+  "versao_contrato": 1,
+  "competencia": "2026-11",
+  "gerado_em": "2026-11-18T10:37:51-03:00",
+  "run_id": "20261118-103750-bc23",
+  "tarifa_kwh": 0.9511,
+  "bandeira": "verde",
+  "adicional_bandeira_100kwh": 0.0,
+  "bandeira_provisoria": false,
+  "bandeira_suportada_pelo_mvp": true,
+  "origem_dados": "api_aneel",
+  "detalhe": {
+    "distribuidora": "ELETROPAULO",
+    "distribuidora_nome": "Enel Distribuição São Paulo",
+    "subgrupo": "B1 Residencial Convencional",
+    "resolucao": "RESOLUÇÃO HOMOLOGATÓRIA Nº 3.596, DE 3 DE JULHO DE 2026",
+    "vigencia": [
+      "2026-07-04",
+      "2027-07-03"
+    ],
+    "tusd_rs_mwh": 472.42,
+    "te_rs_mwh": 316.96,
+    "tarifa_sem_tributos_kwh": 0.78938,
+    "tributos_aproximados": {
+      "pis_cofins": 0.05,
+      "icms": 0.12,
+      "faixa_referencia_kwh": 150
+    },
+    "bandeira_nome_aneel": "Verde",
+    "bandeira_adicional_rs_mwh": 0.0,
+    "onda_de_calor_prevista": false
+  },
+  "fontes": [
+    "https://dadosabertos.aneel.gov.br/dataset/bandeiras-tarifarias",
+    "https://dadosabertos.aneel.gov.br/dataset/tarifas-distribuidoras-energia-eletrica",
+    "https://open-meteo.com/"
+  ]
+}

@@ -1,0 +1,79 @@
+name: Robo Conta Clara
+
+# Execucao sem intervencao humana: todo dia as 08h (Brasilia). Rodar todo dia e seguro:
+# o robo e idempotente (alerta ja enviado no mes nao se repete; MVP igual ao mes -> SEM_MUDANCA)
+# e pega a bandeira nova assim que a ANEEL publica, mesmo com atraso.
+on:
+  schedule:
+    - cron: "0 11 * * *"
+  workflow_dispatch:
+    inputs:
+      competencia:
+        description: "Competencia AAAA-MM (vazio = mes atual)"
+        required: false
+  push:
+    branches: [main]
+    paths: ["src/**", "tests/**", "config/**", ".github/workflows/**"]
+
+permissions:
+  contents: read
+
+jobs:
+  testes:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Testes (sucesso, decisao e falha)
+        run: python -m unittest discover -s tests -v
+
+  robo:
+    needs: testes
+    if: github.event_name != 'push'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      # Cada execucao do Actions comeca do zero: o estado (cache da ANEEL e alertas ja enviados)
+      # e guardado entre execucoes para o robo nao repetir alerta todo dia.
+      - name: Restaurar estado da execucao anterior
+        uses: actions/cache/restore@v4
+        with:
+          path: estado/
+          key: estado-robo-${{ github.run_id }}
+          restore-keys: estado-robo-
+      - name: Casas do MVP (codigos vem de um secret, nunca do Git)
+        env:
+          CASAS_MVP_CSV: ${{ secrets.CASAS_MVP_CSV }}
+        run: |
+          if [ -n "$CASAS_MVP_CSV" ]; then printf '%s\n' "$CASAS_MVP_CSV" > entrada/casas_mvp.csv; fi
+      - name: Executar robo
+        env:
+          NTFY_URL: ${{ secrets.NTFY_URL }}
+          COMPETENCIA: ${{ inputs.competencia }}  # via env (nunca interpolado no script): evita injecao de comando
+        run: |
+          set +e
+          if [ -n "$COMPETENCIA" ]; then python src/executar.py --competencia "$COMPETENCIA"; else python src/executar.py; fi
+          CODIGO=$?
+          echo "codigo_saida=$CODIGO" >> "$GITHUB_STEP_SUMMARY"
+          # 0 = sucesso, 1 = parcial (registrado nos logs), 2 = falha critica -> job vermelho
+          if [ "$CODIGO" -ge 2 ]; then exit "$CODIGO"; fi
+      - name: Salvar estado para a proxima execucao
+        if: always()
+        uses: actions/cache/save@v4
+        with:
+          path: estado/
+          key: estado-robo-${{ github.run_id }}
+      - name: Guardar saidas e logs (auditoria)
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: robo-${{ github.run_id }}
+          path: |
+            saida/
+            logs/
+          retention-days: 90

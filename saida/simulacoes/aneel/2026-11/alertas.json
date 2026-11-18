@@ -1,0 +1,26 @@
+[
+  {
+    "casa": "MVP-DEMO",
+    "status": "ACIMA_DO_LIMITE",
+    "valor_estimado_reais": 164.06,
+    "limite_reais": 150.0,
+    "envio": "ja_enviado",
+    "mensagem": "MVP-DEMO: conta estimada de 2026-11 em R$ 164.06, acima do limite de R$ 150.00 (bandeira verde). Sugestao: anotar nova leitura e rever aparelhos de maior consumo."
+  },
+  {
+    "casa": "CASA-002",
+    "status": "ACIMA_DO_LIMITE",
+    "valor_estimado_reais": 218.57,
+    "limite_reais": 180.0,
+    "envio": "ja_enviado",
+    "mensagem": "CASA-002: conta estimada de 2026-11 em R$ 218.57, acima do limite de R$ 180.00 (bandeira verde). Sugestao: anotar nova leitura e rever aparelhos de maior consumo."
+  },
+  {
+    "casa": "CASA-007",
+    "status": "ACIMA_DO_LIMITE",
+    "valor_estimado_reais": 171.2,
+    "limite_reais": 170.0,
+    "envio": "ja_enviado",
+    "mensagem": "CASA-007: conta estimada de 2026-11 em R$ 171.20, acima do limite de R$ 170.00 (bandeira verde). Sugestao: anotar nova leitura e rever aparelhos de maior consumo."
+  }
+]

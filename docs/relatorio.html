@@ -1,0 +1,220 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>Conta Clara - Relatório RPA</title>
+<style>
+  @page { size: A4; margin: 16mm 15mm 16mm 15mm; }
+  @page paisagem { size: A4 landscape; margin: 10mm; }
+  :root { --verde: #0d6e4f; --tinta: #1b2733; --cinza: #5a6b7d; --linha: #d5dde6; --fundo: #f4f7fa; }
+  * { box-sizing: border-box; }
+  body { font: 10.5pt/1.5 "Segoe UI", Arial, sans-serif; color: var(--tinta); margin: 0; background: #fff; }
+  h1 { font-size: 24pt; color: var(--verde); margin: 0 0 4mm; line-height: 1.15; }
+  h2 { font-size: 14pt; color: var(--verde); border-bottom: 2px solid var(--verde); padding-bottom: 1.5mm; margin: 8mm 0 3mm; break-after: avoid; }
+  h3 { font-size: 11.5pt; margin: 5mm 0 2mm; break-after: avoid; }
+  p { margin: 0 0 2.5mm; text-align: justify; }
+  a { color: #0b5cad; }
+  table { width: 100%; border-collapse: collapse; margin: 2mm 0 4mm; font-size: 9.2pt; break-inside: auto; }
+  th, td { border: 1px solid var(--linha); padding: 1.4mm 2mm; vertical-align: top; text-align: left; }
+  th { background: var(--fundo); }
+  tr { break-inside: avoid; }
+  code { font-family: Consolas, "Cascadia Mono", monospace; font-size: 8.8pt; background: var(--fundo); padding: 0 1mm; border-radius: 2px; }
+  pre { font: 8.4pt/1.4 Consolas, monospace; background: var(--fundo); border: 1px solid var(--linha); padding: 2.5mm; white-space: pre-wrap; break-inside: avoid; margin: 2mm 0 4mm; }
+  figure { margin: 3mm 0 5mm; break-inside: avoid; text-align: center; }
+  figure img { max-width: 100%; border: 1px solid var(--linha); }
+  figcaption { font-size: 8.8pt; color: var(--cinza); margin-top: 1.5mm; }
+  ul { margin: 0 0 3mm; padding-left: 6mm; }
+  li { margin-bottom: 1mm; }
+  .capa { height: 255mm; display: flex; flex-direction: column; justify-content: space-between; break-after: page; }
+  .faixa { background: var(--verde); color: #fff; padding: 6mm 8mm; border-radius: 3mm; }
+  .faixa h1 { color: #fff; font-size: 26pt; }
+  .faixa p { color: #e3f2ec; font-size: 12pt; text-align: left; margin: 0; }
+  .meta td:first-child { width: 42mm; font-weight: 600; background: var(--fundo); }
+  .destaque { background: #eef7f2; border-left: 4px solid var(--verde); padding: 3mm 4mm; margin: 3mm 0 4mm; break-inside: avoid; }
+  .pendente { color: #b42318; font-weight: 700; }
+  .paisagem { page: paisagem; break-before: page; break-after: page; }
+  .paisagem figure img { max-height: 150mm; }
+  .inteira { break-inside: avoid; }
+  .duas { display: grid; grid-template-columns: 1fr 1fr; gap: 4mm; }
+  .ok { color: #1d6b3a; font-weight: 700; }
+  .sumario { columns: 2; font-size: 10pt; }
+  .sumario li { break-inside: avoid; }
+</style>
+</head>
+<body>
+
+<section class="capa">
+  <div>
+    <p style="color:var(--cinza);letter-spacing:.08em;font-size:9.5pt;text-align:left">FIAP · GLOBAL SOLUTION 2026.2 · CITIZENTECH · ENGENHARIA DE SOFTWARE 4º ANO (4ES)</p>
+    <div class="faixa">
+      <h1>Conta Clara<br>Robô mensal de tarifa, estimativa e alertas</h1>
+      <p>Robotic Process Automation · Do Processo Manual à Automação Inteligente</p>
+    </div>
+    <h3 style="margin-top:10mm">Integrante</h3>
+    <table class="meta">
+      <tr><th>Nome completo</th><th>RM</th></tr>
+      <tr><td style="width:auto;background:#fff;font-weight:400">Pedro Henrique Pedrosa Tavares</td><td>RM97877</td></tr>
+    </table>
+    <table class="meta">
+      <tr><td>Disciplina</td><td>Robotic Process Automation · Prof. Bruno Diniz e Profª Cibele Ribeiro</td></tr>
+      <tr><td>Repositório GitHub</td><td><a href="{{REPO}}">{{REPO}}</a></td></tr>
+      <tr><td>Vídeo demonstrativo</td><td>{{VIDEO_HTML}}</td></tr>
+      <tr><td>MVP (público)</td><td><a href="https://contaclara-gs.azurewebsites.net">https://contaclara-gs.azurewebsites.net</a></td></tr>
+      <tr><td>Tecnologia</td><td>Python 3 (biblioteca padrão), GitHub Actions, APIs da ANEEL, Open-Meteo e do MVP, ntfy.sh</td></tr>
+    </table>
+  </div>
+  <div>
+    <h3>Sumário</h3>
+    <ol class="sumario">
+      <li>CitizenTech e problema resolvido</li>
+      <li>Objetivo da automação e benefício ao cidadão</li>
+      <li>Descrição do processo e desenho do fluxo (BPMN)</li>
+      <li>Tecnologias utilizadas e justificativa</li>
+      <li>Regras de negócio, decisões e processamento</li>
+      <li>Tratamento de exceções e recuperação</li>
+      <li>Logs e evidências de auditoria</li>
+      <li>Integração com o MVP</li>
+      <li>Testes realizados (sucesso, decisão e falha)</li>
+      <li>Segurança e LGPD</li>
+      <li>Conclusão e links</li>
+    </ol>
+    <p style="color:var(--cinza);font-size:9pt;text-align:left">São Paulo, novembro de 2026.</p>
+  </div>
+</section>
+
+<h2>1. CitizenTech e problema resolvido</h2>
+<p>O <b>Conta Clara</b> é um assistente de energia para <b>famílias de baixa renda</b>, idosos que moram sozinhos e quem já teve corte ou conta muito acima do esperado. O piloto acontece em bairros da <b>zona sul de São Paulo</b> atendidos pela Enel SP, com apoio de um CRAS e de associações de moradores. O cidadão anota o número do medidor de luz, vê quanto a conta deve dar antes de ela chegar e confere se a distribuidora cobrou certo. Se a cobrança diverge, recebe pronto o texto da contestação, com base na REN ANEEL nº 1.000/2021.</p>
+<p><b>Problema operacional que o robô resolve:</b> a estimativa que o cidadão vê depende de duas informações que mudam: a <b>tarifa homologada</b> (reajuste anual da distribuidora) e a <b>bandeira tarifária</b> (muda todo mês). No MVP, os dois valores eram <b>fixos</b> (<code>TARIFA_KWH=0.92</code>, <code>BANDEIRA=amarela</code>). Mantê-los certos exigia um voluntário que, todo mês, entrasse no portal da ANEEL, encontrasse a tarifa B1 residencial da Enel SP numa base com mais de 300 mil linhas, convertesse R$/MWh em R$/kWh com impostos, atualizasse o sistema, passasse a limpo a planilha de leituras do mutirão e avisasse uma a uma as famílias com conta alta. São de 3 a 4 horas por mês, com muito risco de erro. Quando atrasa, a família recebe uma estimativa errada e o aviso de conta alta chega depois da fatura.</p>
+
+<h2>2. Objetivo da automação e benefício ao cidadão</h2>
+<div class="destaque"><b>Objetivo (50 palavras):</b> automatizar, de ponta a ponta e sem intervenção humana, a atualização mensal da tarifa e da bandeira do Conta Clara a partir dos dados abertos da ANEEL; recalcular a conta estimada de cada família, validando as leituras recebidas; e alertar automaticamente quem vai passar do limite, com logs auditáveis e sem dados pessoais.</div>
+<ul>
+  <li><b>Para a família:</b> estimativa da conta com a tarifa e a bandeira <b>reais do mês</b>, e aviso <b>antes</b> da fatura chegar, quando ainda dá para mudar o consumo. A regra de onda de calor antecipa o aviso nas semanas quentes, quando ventilador e chuveiro pesam mais.</li>
+  <li><b>Para o CRAS e as associações:</b> fim do trabalho manual mensal. As famílias sem celular, atendidas no mutirão, entram no mesmo cálculo por planilha, e o agente recebe a lista de alertas e de linhas a corrigir.</li>
+  <li><b>Para o produto:</b> o MVP deixa de usar valores fixos de referência e passa a ser alimentado todo mês por um contrato verificável.</li>
+</ul>
+
+<h2>3. Descrição do processo e desenho do fluxo</h2>
+<p>O processo é disparado por agendamento <b>diário, às 08h</b>, no GitHub Actions. Rodar todo dia é seguro porque o robô é idempotente: alerta já enviado no mês não se repete e, se o MVP já está atualizado, a decisão é <i>SEM_MUDANCA</i>. Além disso, a bandeira nova é captada assim que a ANEEL a publica, mesmo com atraso. O estado (cache da ANEEL e alertas enviados) é guardado entre execuções com <code>actions/cache</code>. O processo tem três fases. O BPMN 2.0 completo está em <code>docs/processo.bpmn</code>, que abre no bpmn.io ou no Camunda Modeler; a figura da página seguinte é gerada do mesmo arquivo de layout. O PDD está em <code>docs/PDD.md</code>.</p>
+<table class="inteira">
+  <tr><th style="width:24%">Fase</th><th>Etapas</th></tr>
+  <tr><td><b>1. Coleta e decisão</b></td><td>Coleta da bandeira e da tarifa na API CKAN da ANEEL → validação (vigência, unidade, trava de sanidade) → cache da coleta boa (ou recuperação pelo cache) → previsão de calor no Open-Meteo → geração do contrato <code>tarifa_vigente.json/.env</code> → leitura do <code>/api/config</code> do MVP e decisão (<i>ATUALIZAR</i>, <i>SEM_MUDANCA</i>, <i>NAO_PUBLICAR</i>, <i>INDEFINIDA</i>) → leitura e validação das entradas</td></tr>
+  <tr><td><b>2. Lote de casas</b> (repetição)</td><td>Para cada casa: obter leituras (API do MVP ou planilha do mutirão) → 2 ou mais leituras válidas? → calcular consumo, projeção de 30 dias e conta com o ICMS da faixa e o adicional da bandeira → acima do limite (ou perto, com calor)? → alerta push sem reenvio → próxima casa</td></tr>
+  <tr><td><b>3. Publicação e encerramento</b></td><td>Se <code>--publicar-azure</code> e a decisão for <i>ATUALIZAR</i>: atualizar <code>TARIFA_KWH</code>/<code>BANDEIRA</code> no App Service e confirmar em <code>/api/config</code> → gravar saídas, log e auditoria → código de saída 0, 1 ou 2</td></tr>
+</table>
+<table>
+  <tr><th style="width:24%">Entradas</th><td>API ANEEL (<i>Bandeira Tarifária – Acionamento</i>; <i>Tarifas Homologadas das Distribuidoras</i>) · API Open-Meteo · API do MVP (<code>/api/config</code>, <code>/api/leituras</code>) · <code>entrada/casas_mvp.csv</code> · <code>entrada/leituras_mutirao.csv</code></td></tr>
+  <tr><th>Saídas</th><td><code>saida/AAAA-MM/</code>: <code>tarifa_vigente.json</code>, <code>tarifa_vigente.env</code>, <code>estimativas.csv</code>, <code>alertas.json</code>, <code>rejeitados.csv</code>, <code>resumo_execucao.json</code> · push no ntfy.sh · <code>logs/robo-&lt;id&gt;.log</code> · <code>logs/auditoria.jsonl</code></td></tr>
+</table>
+
+<section class="paisagem">
+  <h2 style="margin-top:0">3.1 Fluxo do processo (BPMN 2.0)</h2>
+  <figure><img src="../assets/fluxo-processo.png" alt="Diagrama BPMN do robô mensal">
+  <figcaption>Figura 1. Fluxo do robô: evento de início temporizado, gateways exclusivos (decisões), laço sobre as casas, caminhos de exceção e evento de fim com erro (falha crítica). Fonte: <code>docs/processo.bpmn</code>.</figcaption></figure>
+</section>
+
+<h2>4. Tecnologias utilizadas e justificativa</h2>
+<table>
+  <tr><th style="width:26%">Tecnologia</th><th>Uso</th><th style="width:36%">Por que</th></tr>
+  <tr><td><b>Python 3.10 ou mais novo</b>, só biblioteca padrão (<code>urllib</code>, <code>csv</code>, <code>json</code>, <code>logging</code>, <code>unittest</code>)</td><td>todo o robô e os testes</td><td>o processo é integração de APIs e arquivos (não há tela para "clicar"), então Python é mais robusto e versionável que RPA de interface. Sem dependências: roda em qualquer máquina do CRAS e no Actions, sem <code>pip install</code> e sem risco de cadeia de suprimentos</td></tr>
+  <tr><td><b>API CKAN da ANEEL</b> (<code>datastore_search</code>)</td><td>bandeira do mês e tarifa B1 vigente, com filtro no servidor</td><td>fonte oficial e aberta (ODbL); o filtro evita baixar o CSV de mais de 300 mil linhas</td></tr>
+  <tr><td><b>Open-Meteo</b></td><td>máxima prevista para 7 dias na zona sul de SP</td><td>gratuita, sem chave, já usada no componente de Dados</td></tr>
+  <tr><td><b>API do MVP</b> + <b>Azure CLI</b> (opcional)</td><td>ler a configuração e as leituras; publicar <code>TARIFA_KWH</code>/<code>BANDEIRA</code></td><td>o MVP já lê esses dois valores de variáveis de ambiente: a integração não exige mudar o código dele</td></tr>
+  <tr><td><b>GitHub Actions</b> (cron)</td><td>execução diária sem intervenção, estado guardado entre execuções, testes a cada push, artefatos de auditoria por 90 dias</td><td>gratuito, com segredos (<code>CASAS_MVP_CSV</code>, <code>NTFY_URL</code>) fora do código</td></tr>
+  <tr><td><b>ntfy.sh</b></td><td>alerta push no celular do agente ou da família</td><td>sem conta e sem app obrigatório (abre no navegador); é o mesmo canal de alertas do monitoramento do MVP</td></tr>
+  <tr><td><b>BPMN 2.0</b></td><td>desenho do processo</td><td>padrão aberto, editável no bpmn.io e no Camunda</td></tr>
+</table>
+<p>Organização do código em <code>src/robo_conta_clara/</code>: <code>fontes.py</code> (ANEEL, Open-Meteo, cache), <code>entrada.py</code> (validação), <code>regras.py</code> (cálculo e decisão), <code>mvp.py</code> (integração), <code>alertas.py</code> (push idempotente), <code>auditoria.py</code> (logs e mascaramento), <code>http.py</code> (tempo limite e novas tentativas) e <code>robo.py</code> (orquestração). O ponto de entrada é <code>src/executar.py</code>.</p>
+
+<h2>5. Regras de negócio, decisões e processamento</h2>
+<table>
+  <tr><th style="width:28%">Regra</th><th>Definição</th></tr>
+  <tr><td>Tarifa sem tributos</td><td>(TUSD + TE) ÷ 1000. Em nov/2026, ELETROPAULO B1 residencial convencional, REH nº 3.596/2026: (472,42 + 316,96) ÷ 1000 = <b>0,78938 R$/kWh</b></td></tr>
+  <tr><td>Tributos ("por dentro", como na fatura)</td><td>tarifa ÷ (1 − ICMS − PIS/COFINS). ICMS residencial SP por faixa: até 90 kWh 0%, até 200 kWh 12%, acima 18%; PIS/COFINS 5% (aproximação configurável em <code>config.json</code>). O contrato do MVP usa a faixa de referência de 150 kWh: 0,78938 ÷ 0,83 = <b>0,9511 R$/kWh</b></td></tr>
+  <tr><td>Bandeira</td><td>competência AAAA-MM-01. Nome ANEEL convertido para as chaves do MVP (<code>verde</code>, <code>amarela</code>, <code>vermelha1</code>, <code>vermelha2</code>); adicional R$/MWh ÷ 10 = R$ por 100 kWh. Mês ainda não publicado: usa o último e marca <code>bandeira_provisoria</code></td></tr>
+  <tr><td>Consumo e conta</td><td>consumo diário = (última − primeira leitura) ÷ dias; projeção = ×30; conta = kWh × tarifa da faixa + kWh/100 × adicional (mesma fórmula do MVP: 172,5 kWh com 0,92 + amarela = R$ 161,95, igual à tela)</td></tr>
+  <tr><td><b>Decisão por casa</b></td><td><code>ACIMA_DO_LIMITE</code> se conta &gt; limite; <code>ATENCAO_CALOR</code> se conta ≥ 90% do limite <b>e</b> 3 ou mais dias com máxima ≥ 32 °C; <code>DADOS_INSUFICIENTES</code> com menos de 2 leituras válidas; senão <code>OK</code></td></tr>
+  <tr><td><b>Decisão sobre o MVP</b></td><td><code>ATUALIZAR</code> (valores diferentes) · <code>SEM_MUDANCA</code> · <code>NAO_PUBLICAR</code> (bandeira sem suporte, ex.: escassez hídrica, que pede revisão humana) · <code>INDEFINIDA</code> (MVP fora)</td></tr>
+  <tr><td><b>Repetição</b></td><td>laço sobre a coleção de casas (MVP + mutirão); cada casa é processada e registrada de forma independente</td></tr>
+  <tr><td>Validação da planilha</td><td>id <code>CASA-000</code>; data ISO e não futura; kWh inteiro de até 6 dígitos; limite de R$ 10 a R$ 5.000; aceita <code>,</code> ou <code>;</code> (Excel PT-BR); duplicata idêntica ignorada; dois valores no mesmo dia descartados; leitura fora da sequência do medidor descartada</td></tr>
+</table>
+<p>Resultado real da competência 2026-11 (9 casas: 1 do MVP e 8 do mutirão):</p>
+<figure><img src="../assets/09-estimativas-e-rejeitados.png" alt="estimativas e rejeitados">
+<figcaption>Figura 2. <code>estimativas.csv</code> (status e valor por casa, comparando com a configuração antiga do MVP) e <code>rejeitados.csv</code> (7 linhas com motivo). O campo <code>alerta=ja_enviado</code> é da segunda execução do mês.</figcaption></figure>
+
+<h2>6. Tratamento de exceções e recuperação</h2>
+<table>
+  <tr><th style="width:30%">Falha prevista</th><th>Tratamento</th><th style="width:16%">Resultado</th></tr>
+  <tr><td>API fora do ar, tempo esgotado, 5xx ou 429</td><td>3 tentativas com espera exponencial (2, 4 e 8 s); 4xx não é repetido</td><td>registro no log</td></tr>
+  <tr><td>ANEEL indisponível ou com dado inválido</td><td>recupera pela última coleta válida (cache de até 45 dias), marcada em <code>origem_dados</code></td><td>código 1</td></tr>
+  <tr><td>ANEEL fora e sem cache válido</td><td>falha crítica: <b>nada é publicado nem alertado</b> com dado duvidoso</td><td>código 2 (job vermelho)</td></tr>
+  <tr><td>Tarifa absurda ou número ilegível</td><td>trava de sanidade (0,20 a 3,00 R$/kWh) e parser de número brasileiro: vira falha da fonte</td><td>cache ou código 2</td></tr>
+  <tr><td>Open-Meteo fora</td><td>só a regra de calor é desligada, com aviso no resumo</td><td>código 0</td></tr>
+  <tr><td>MVP fora / código de casa revogado (401)</td><td>a casa vira <code>FALHA</code> e as demais seguem; decisão <code>INDEFINIDA</code></td><td>código 1</td></tr>
+  <tr><td>Arquivo ausente, vazio, sem colunas ou com codificação errada</td><td>erro registrado; o lote segue com a outra origem</td><td>código 1</td></tr>
+  <tr><td>Linhas duplicadas, inconsistentes ou inválidas</td><td>descartadas com linha e motivo em <code>rejeitados.csv</code></td><td>registro</td></tr>
+  <tr><td>Push falhou</td><td>fica pendente e é reenviado na próxima execução; push enviado nunca se repete (estado por competência)</td><td>código 1</td></tr>
+</table>
+<figure><img src="../assets/03-falha-aneel-recuperacao.png" alt="falha ANEEL com recuperação"><figcaption>Figura 3. ANEEL fora: 3 tentativas e recuperação pelo cache.</figcaption></figure>
+<figure><img src="../assets/04-falha-critica.png" alt="falha crítica"><figcaption>Figura 4. Sem cache: falha crítica, código 2, nada publicado.</figcaption></figure>
+<figure><img src="../assets/05-falha-mvp.png" alt="MVP fora"><figcaption>Figura 5. MVP fora do ar: a casa do MVP fica como FALHA e as 8 casas do mutirão são processadas.</figcaption></figure>
+
+<h2>7. Logs e evidências de auditoria</h2>
+<p>Cada execução recebe um <code>run_id</code> e gera: (a) <code>logs/robo-&lt;run_id&gt;.log</code>, legível, com data e hora (Brasília), nível, módulo e mensagem; (b) uma linha JSON por evento em <code>logs/auditoria.jsonl</code> (início, coleta, decisão, entrada, cada casa, publicação e fim, com contagens); (c) <code>resumo_execucao.json</code> com situação, código de saída, origem da tarifa, avisos, erros e contagem por status. No GitHub Actions, <code>saida/</code> e <code>logs/</code> viram artefato guardado por 90 dias. Os logs <b>não</b> contêm nome, endereço nem código de casa: o código aparece como <code>cod#5ef73fa4</code> (hash) e um filtro mascara cabeçalhos, tokens e tópicos do ntfy.</p>
+<figure><img src="../assets/01-execucao-sucesso.png" alt="execução real"><figcaption>Figura 6. Execução real em 18/11/2026: coleta na ANEEL (bandeira verde, REH 3.596/2026), decisão ATUALIZAR, 7 rejeições com motivo, laço de 9 casas com decisão e alertas, encerramento com código 0.</figcaption></figure>
+<figure><img src="../assets/10-auditoria.png" alt="auditoria"><figcaption>Figura 7. Trilha de auditoria (<code>logs/auditoria.jsonl</code>).</figcaption></figure>
+
+<h2>8. Integração com o MVP</h2>
+<p>A integração tem dois sentidos, e os dois são verificáveis:</p>
+<ul>
+  <li><b>O robô consome o MVP (API):</b> lê <code>GET /api/config</code>, que hoje mostra <code>tarifa_kwh 0.92</code> e <code>bandeira amarela</code>, para decidir a atualização, e lê <code>GET /api/leituras</code> da casa de demonstração (código no cabeçalho <code>X-Codigo-Casa</code>) para recalcular a estimativa. A tela do MVP mostra R$ 161,95 com a configuração fixa; com a tarifa real de novembro, o robô calcula <b>R$ 164,06</b> e alerta, porque o limite dessa casa é R$ 150.</li>
+  <li><b>O MVP consome o robô (arquivo estruturado e configuração):</b> o contrato <code>saida/tarifa_vigente.json</code> (<code>versao_contrato: 1</code>) e o <code>tarifa_vigente.env</code> trazem exatamente as variáveis que o MVP lê (<code>TARIFA_KWH</code>, <code>BANDEIRA</code>) e que aparecem em <code>/api/config</code> e na conta estimada da tela. Com <code>--publicar-azure</code>, o robô grava esses valores no App Service e confirma lendo <code>/api/config</code> até eles aparecerem. O mesmo contrato serve para a camada Ouro do componente de Dados (detalhes em <code>integracao-mvp/README.md</code>).</li>
+</ul>
+<div class="duas">
+  <figure><img src="../assets/11-mvp-api.png" alt="API do MVP"><figcaption>Figura 8. API pública do MVP consumida pelo robô.</figcaption></figure>
+  <figure><img src="../assets/08-contrato-mvp.png" alt="contrato"><figcaption>Figura 9. Contrato gerado para o MVP (<code>.env</code> e <code>.json</code>).</figcaption></figure>
+</div>
+<figure><img src="../assets/12-mvp-tela.png" alt="tela do MVP" style="max-height:105mm"><figcaption>Figura 10. Tela do MVP (casa de demonstração) com a estimativa que passa a usar a tarifa e a bandeira geradas pelo robô.</figcaption></figure>
+<figure><img src="../assets/06-alertas-ntfy.png" alt="alertas ntfy"><figcaption>Figura 11. Alertas push reais recebidos no ntfy.sh (tópico oculto), só com o código pseudônimo da casa.</figcaption></figure>
+
+<h2>9. Testes realizados (sucesso, decisão e falha)</h2>
+<p><b>Automatizados:</b> 34 testes com <code>unittest</code> (<code>python -m unittest discover -s tests -v</code>), sem internet. As APIs são substituídas por um dublê, e o cliente HTTP é testado contra um servidor local real. Todos passam no Linux e no Windows (Python 3.12). A lista completa está em <code>tests/README.md</code>.</p>
+<table>
+  <tr><th style="width:13%">Tipo</th><th>Cenário</th><th style="width:30%">Resultado esperado e obtido</th></tr>
+  <tr><td>Sucesso</td><td>Execução completa com todas as fontes no ar</td><td class="ok">contrato 0.9511/verde, status por casa, código 0</td></tr>
+  <tr><td>Sucesso</td><td>Nenhum log ou saída contém o código da casa</td><td class="ok">ok (LGPD)</td></tr>
+  <tr><td>Decisão</td><td>MVP já atualizado</td><td class="ok">SEM_MUDANCA</td></tr>
+  <tr><td>Decisão</td><td>Casa a 94% do limite com onda de calor</td><td class="ok">ATENCAO_CALOR</td></tr>
+  <tr><td>Decisão</td><td>Bandeira vermelha P2</td><td class="ok">casa passa a ACIMA_DO_LIMITE</td></tr>
+  <tr><td>Decisão</td><td>Bandeira de escassez hídrica</td><td class="ok">NAO_PUBLICAR, código 1</td></tr>
+  <tr><td>Decisão</td><td>Duas execuções no mesmo mês</td><td class="ok">um único push</td></tr>
+  <tr><td>Falha</td><td>ANEEL 503 com cache / sem cache</td><td class="ok">cache e código 1 / código 2 sem contrato</td></tr>
+  <tr><td>Falha</td><td>Código de casa revogado (401) · MVP fora · Open-Meteo fora · planilha ausente · ntfy fora</td><td class="ok">só o item afetado falha; o lote segue; código coerente</td></tr>
+  <tr><td>Unidade</td><td>ICMS por faixa, número brasileiro, bandeiras, vigência, duplicatas, datas, pico de anotação, novas tentativas</td><td class="ok">ok</td></tr>
+</table>
+<p><b>Executados de verdade (18/11/2026, APIs reais):</b> (1) execução normal: SUCESSO, 3 alertas push entregues (Fig. 6 e 11); (2) reexecução: alertas <code>ja_enviado</code>, sem duplicar (Fig. 13); (3) ANEEL fora: recuperação pelo cache (Fig. 3); (4) sem cache: falha crítica (Fig. 4); (5) MVP fora: lote segue (Fig. 5).</p>
+<figure><img src="../assets/07-testes-automatizados.png" alt="testes" style="max-height:120mm"><figcaption>Figura 12. Saída dos testes automatizados.</figcaption></figure>
+<figure><img src="../assets/02-reexecucao-sem-reenvio.png" alt="reexecução"><figcaption>Figura 13. Reexecução no mesmo mês: nenhum alerta reenviado.</figcaption></figure>
+
+<h2>10. Segurança e LGPD</h2>
+<ul>
+  <li><b>Minimização:</b> o robô não recebe nem gera nome, CPF, telefone ou endereço. Casas são pseudônimos (<code>CASA-001</code>), e a validação <b>recusa</b> ids que pareçam nome ou endereço (ex.: "Casa da esquina").</li>
+  <li><b>Código da casa</b> (a "senha" da casa no MVP): enviado só no cabeçalho HTTPS, nunca na URL; no log, aparece só como hash truncado; um teste automatizado garante que ele não aparece em nenhum log nem em nenhuma saída.</li>
+  <li><b>Segredos fora do Git:</b> a lista real de casas vem do GitHub Secret <code>CASAS_MVP_CSV</code> e o tópico do ntfy, de <code>NTFY_URL</code>. O <code>.gitignore</code> cobre <code>estado/</code>, <code>.env</code> e <code>entrada/privado/</code>. O workflow roda com permissão só de leitura e recebe a entrada manual por variável de ambiente, o que evita injeção de comando.</li>
+  <li><b>Alertas</b> só com o pseudônimo e valores. O tópico do ntfy é aleatório e não aparece nos prints.</li>
+  <li><b>Fontes públicas</b> com licença aberta (ANEEL ODbL, Open-Meteo CC BY 4.0); os dados de demonstração são <b>sintéticos</b>.</li>
+  <li><b>Integridade:</b> nada é publicado no MVP com dado duvidoso (falha crítica e <code>NAO_PUBLICAR</code>); a publicação exige <code>az login</code> de quem tem permissão e é confirmada lendo o MVP.</li>
+</ul>
+
+<h2>11. Conclusão e links</h2>
+<p>O robô transforma um processo manual de 3 a 4 horas por mês, sujeito a erro, numa rotina agendada de poucos segundos. Ele usa a tarifa e a bandeira oficiais da ANEEL, valida e corrige as entradas do mutirão, decide por casa quem precisa de aviso e entrega ao MVP um contrato verificável, com tratamento explícito de cada falha e trilha de auditoria sem dados pessoais. Na primeira execução real, o robô detectou que o MVP ainda usava a bandeira amarela quando a ANEEL já tinha acionado a verde, e que a tarifa homologada de julho de 2026 já estava em vigor. Isso mostra o valor da automação para a estimativa que o cidadão vê. Próximos passos: Tarifa Social (desconto por faixa) para as famílias inscritas no CadÚnico, e o envio do alerta direto ao aplicativo da família.</p>
+<table class="meta">
+  <tr><td>Repositório GitHub</td><td><a href="{{REPO}}">{{REPO}}</a></td></tr>
+  <tr><td>Vídeo demonstrativo</td><td>{{VIDEO_HTML}}</td></tr>
+  <tr><td>MVP</td><td><a href="https://contaclara-gs.azurewebsites.net">https://contaclara-gs.azurewebsites.net</a> · <a href="https://contaclara-gs.azurewebsites.net/api/config">/api/config</a></td></tr>
+  <tr><td>BPMN e PDD</td><td><a href="{{REPO}}/blob/main/docs/processo.bpmn">docs/processo.bpmn</a> · <a href="{{REPO}}/blob/main/docs/PDD.md">docs/PDD.md</a></td></tr>
+  <tr><td>Fontes de dados</td><td><a href="https://dadosabertos.aneel.gov.br/dataset/bandeiras-tarifarias">ANEEL Bandeiras</a> · <a href="https://dadosabertos.aneel.gov.br/dataset/tarifas-distribuidoras-energia-eletrica">ANEEL Tarifas</a> · <a href="https://open-meteo.com/">Open-Meteo</a></td></tr>
+</table>
+
+</body>
+</html>

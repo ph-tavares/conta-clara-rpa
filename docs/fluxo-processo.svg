@@ -1,0 +1,163 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1330 950" width="1330" height="950" font-family="Segoe UI, Arial, sans-serif">
+<defs><marker id="seta" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#33475b"/></marker></defs>
+<rect width="1330" height="950" fill="#ffffff"/>
+<rect x="20" y="20" width="1290" height="400" rx="10" fill="#f7f9fc" stroke="#d5dde6"/>
+<text x="1298" y="38" font-size="13" font-weight="700" fill="#5a6b7d" text-anchor="end">1. Coleta e decisão sobre o MVP</text>
+<rect x="20" y="425" width="1290" height="290" rx="10" fill="#f4fbf6" stroke="#d5dde6"/>
+<text x="1298" y="443" font-size="13" font-weight="700" fill="#5a6b7d" text-anchor="end">2. Lote de casas (repetição)</text>
+<rect x="20" y="735" width="1290" height="205" rx="10" fill="#fbf7f4" stroke="#d5dde6"/>
+<text x="1298" y="753" font-size="13" font-weight="700" fill="#5a6b7d" text-anchor="end">3. Publicação e encerramento</text>
+<path d="M100,183 h-0 v44 M100,183 h14 M100,227 h14" stroke="#8a9bb0" fill="none"/>
+<text x="106" y="197" font-size="11" fill="#5a6b7d" font-style="italic">Retry 3x com espera</text>
+<text x="106" y="211" font-size="11" fill="#5a6b7d" font-style="italic">exponencial em toda chamada</text>
+<text x="106" y="225" font-size="11" fill="#5a6b7d" font-style="italic">HTTP</text>
+<path d="M670,183 h-0 v44 M670,183 h14 M670,227 h14" stroke="#8a9bb0" fill="none"/>
+<text x="676" y="197" font-size="11" fill="#5a6b7d" font-style="italic">Falha no clima só desliga a</text>
+<text x="676" y="211" font-size="11" fill="#5a6b7d" font-style="italic">regra de calor</text>
+<path d="M740,668 h-0 v44 M740,668 h14 M740,712 h14" stroke="#8a9bb0" fill="none"/>
+<text x="746" y="682" font-size="11" fill="#5a6b7d" font-style="italic">Loop: cada casa é</text>
+<text x="746" y="696" font-size="11" fill="#5a6b7d" font-style="italic">independente; erro numa casa</text>
+<text x="746" y="710" font-size="11" fill="#5a6b7d" font-style="italic">não para o lote</text>
+<path d="M990,183 h-0 v44 M990,183 h14 M990,227 h14" stroke="#8a9bb0" fill="none"/>
+<text x="996" y="197" font-size="11" fill="#5a6b7d" font-style="italic">Linhas inválidas, duplicadas</text>
+<text x="996" y="211" font-size="11" fill="#5a6b7d" font-style="italic">ou fora de sequência vão para</text>
+<text x="996" y="225" font-size="11" fill="#5a6b7d" font-style="italic">rejeitados.csv</text>
+<path d="M68,110 L116,110" fill="none" stroke="#33475b" stroke-width="1.6" marker-end="url(#seta)"/>
+<path d="M244,110 L305,110" fill="none" stroke="#33475b" stroke-width="1.6" marker-end="url(#seta)"/>
+<path d="M355,110 L406,110" fill="none" stroke="#33475b" stroke-width="1.6" marker-end="url(#seta)"/>
+<text x="363" y="104" font-size="11.5" font-weight="700" fill="#1d6b3a">sim</text>
+<path d="M534,110 L585,110" fill="none" stroke="#33475b" stroke-width="1.6" marker-end="url(#seta)"/>
+<path d="M330,135 L330,218" fill="none" stroke="#33475b" stroke-width="1.6" marker-end="url(#seta)"/>
+<text x="336" y="151" font-size="11.5" font-weight="700" fill="#1d6b3a">não</text>
+<path d="M394,250 L445,250" fill="none" stroke="#33475b" stroke-width="1.6" marker-end="url(#seta)"/>
+<path d="M495,250 L610,250 L610,135" fill="none" stroke="#33475b" stroke-width="1.6" marker-end="url(#seta)"/>
+<text x="503" y="244" font-size="11.5" font-weight="700" fill="#1d6b3a">sim</text>
+<path d="M470,275 L470,338" fill="none" stroke="#33475b" stroke-width="1.6" marker-end="url(#seta)"/>
+<text x="476" y="291" font-size="11.5" font-weight="700" fill="#1d6b3a">não</text>
+<path d="M534,370 L592,370" fill="none" stroke="#33475b" stroke-width="1.6" marker-end="url(#seta)"/>
+<path d="M635,110 L686,110" fill="none" stroke="#33475b" stroke-width="1.6" marker-end="url(#seta)"/>
+<path d="M814,110 L846,110" fill="none" stroke="#33475b" stroke-width="1.6" marker-end="url(#seta)"/>
+<path d="M974,110 L1006,110" fill="none" stroke="#33475b" stroke-width="1.6" marker-end="url(#seta)"/>
+<path d="M1134,110 L1166,110" fill="none" stroke="#33475b" stroke-width="1.6" marker-end="url(#seta)"/>
+<path d="M1230,142 L1230,422 L90,422 L90,530 L116,530" fill="none" stroke="#33475b" stroke-width="1.6" marker-end="url(#seta)"/>
+<path d="M244,530 L266,530" fill="none" stroke="#33475b" stroke-width="1.6" marker-end="url(#seta)"/>
+<path d="M394,530 L455,530" fill="none" stroke="#33475b" stroke-width="1.6" marker-end="url(#seta)"/>
+<path d="M505,530 L566,530" fill="none" stroke="#33475b" stroke-width="1.6" marker-end="url(#seta)"/>
+<text x="513" y="524" font-size="11.5" font-weight="700" fill="#1d6b3a">sim</text>
+<path d="M480,555 L480,628" fill="none" stroke="#33475b" stroke-width="1.6" marker-end="url(#seta)"/>
+<text x="486" y="571" font-size="11.5" font-weight="700" fill="#1d6b3a">não</text>
+<path d="M544,660 L1070,660 L1070,555" fill="none" stroke="#33475b" stroke-width="1.6" marker-end="url(#seta)"/>
+<path d="M694,530 L755,530" fill="none" stroke="#33475b" stroke-width="1.6" marker-end="url(#seta)"/>
+<path d="M805,530 L866,530" fill="none" stroke="#33475b" stroke-width="1.6" marker-end="url(#seta)"/>
+<text x="813" y="524" font-size="11.5" font-weight="700" fill="#1d6b3a">sim</text>
+<path d="M780,555 L780,600 L1070,600 L1070,555" fill="none" stroke="#33475b" stroke-width="1.6" marker-end="url(#seta)"/>
+<text x="786" y="571" font-size="11.5" font-weight="700" fill="#1d6b3a">não</text>
+<path d="M994,530 L1045,530" fill="none" stroke="#33475b" stroke-width="1.6" marker-end="url(#seta)"/>
+<path d="M1095,530 L1175,530" fill="none" stroke="#33475b" stroke-width="1.6" marker-end="url(#seta)"/>
+<path d="M1200,505 L1200,470 L180,470 L180,498" fill="none" stroke="#33475b" stroke-width="1.6" marker-end="url(#seta)"/>
+<text x="1206" y="497" font-size="11.5" font-weight="700" fill="#1d6b3a">sim</text>
+<path d="M1200,555 L1200,725 L180,725 L180,820" fill="none" stroke="#33475b" stroke-width="1.6" marker-end="url(#seta)"/>
+<text x="1206" y="571" font-size="11.5" font-weight="700" fill="#1d6b3a">não</text>
+<path d="M205,845 L276,845" fill="none" stroke="#33475b" stroke-width="1.6" marker-end="url(#seta)"/>
+<text x="213" y="839" font-size="11.5" font-weight="700" fill="#1d6b3a">sim</text>
+<path d="M180,870 L180,905 L490,905 L490,870" fill="none" stroke="#33475b" stroke-width="1.6" marker-end="url(#seta)"/>
+<text x="186" y="886" font-size="11.5" font-weight="700" fill="#1d6b3a">não</text>
+<path d="M404,845 L465,845" fill="none" stroke="#33475b" stroke-width="1.6" marker-end="url(#seta)"/>
+<path d="M515,845 L576,845" fill="none" stroke="#33475b" stroke-width="1.6" marker-end="url(#seta)"/>
+<path d="M704,845 L772,845" fill="none" stroke="#33475b" stroke-width="1.6" marker-end="url(#seta)"/>
+<circle cx="50" cy="110" r="18.0" fill="#e6f6ea" stroke="#33475b" stroke-width="1.5"/>
+<circle cx="50" cy="110" r="12.0" fill="#fff" stroke="#33475b"/><path d="M50,103 L50,110 L55,113" stroke="#33475b" fill="none" stroke-width="1.5"/>
+<text x="50" y="143.0" font-size="11.5" text-anchor="middle" fill="#1b2733">Todo dia, 08h</text>
+<rect x="116.0" y="78.0" width="128" height="64" rx="9" fill="#e8f1fb" stroke="#33475b" stroke-width="1.5"/>
+<text x="180" y="99.0" font-size="12" text-anchor="middle" fill="#1b2733">Coletar bandeira</text>
+<text x="180" y="114.0" font-size="12" text-anchor="middle" fill="#1b2733">e tarifa do mês</text>
+<text x="180" y="129.0" font-size="12" text-anchor="middle" fill="#1b2733">(API ANEEL)</text>
+<path d="M330,85.0 L355.0,110 L330,135.0 L305.0,110 z" fill="#fff6d6" stroke="#33475b" stroke-width="1.5"/>
+<path d="M323,103 L337,117 M337,103 L323,117" stroke="#33475b" stroke-width="2.5"/>
+<text x="330" y="64" font-size="11.5" text-anchor="middle" fill="#1b2733" font-weight="600">ANEEL ok e dado</text>
+<text x="330" y="77" font-size="11.5" text-anchor="middle" fill="#1b2733" font-weight="600">válido?</text>
+<rect x="406.0" y="78.0" width="128" height="64" rx="9" fill="#e8f1fb" stroke="#33475b" stroke-width="1.5"/>
+<text x="470" y="106.5" font-size="12" text-anchor="middle" fill="#1b2733">Salvar cache da</text>
+<text x="470" y="121.5" font-size="12" text-anchor="middle" fill="#1b2733">coleta</text>
+<path d="M610,85.0 L635.0,110 L610,135.0 L585.0,110 z" fill="#fff6d6" stroke="#33475b" stroke-width="1.5"/>
+<path d="M603,103 L617,117 M617,103 L603,117" stroke="#33475b" stroke-width="2.5"/>
+<rect x="686.0" y="78.0" width="128" height="64" rx="9" fill="#e8f1fb" stroke="#33475b" stroke-width="1.5"/>
+<text x="750" y="99.0" font-size="12" text-anchor="middle" fill="#1b2733">Consultar</text>
+<text x="750" y="114.0" font-size="12" text-anchor="middle" fill="#1b2733">previsão de calor</text>
+<text x="750" y="129.0" font-size="12" text-anchor="middle" fill="#1b2733">(Open-Meteo)</text>
+<rect x="846.0" y="78.0" width="128" height="64" rx="9" fill="#e8f1fb" stroke="#33475b" stroke-width="1.5"/>
+<text x="910" y="99.0" font-size="12" text-anchor="middle" fill="#1b2733">Gerar contrato</text>
+<text x="910" y="114.0" font-size="12" text-anchor="middle" fill="#1b2733">tarifa_vigente</text>
+<text x="910" y="129.0" font-size="12" text-anchor="middle" fill="#1b2733">(.json e .env)</text>
+<rect x="1006.0" y="78.0" width="128" height="64" rx="9" fill="#e8f1fb" stroke="#33475b" stroke-width="1.5"/>
+<text x="1070" y="99.0" font-size="12" text-anchor="middle" fill="#1b2733">Ler /api/config</text>
+<text x="1070" y="114.0" font-size="12" text-anchor="middle" fill="#1b2733">do MVP e decidir</text>
+<text x="1070" y="129.0" font-size="12" text-anchor="middle" fill="#1b2733">a atualização</text>
+<rect x="1166.0" y="78.0" width="128" height="64" rx="9" fill="#e8f1fb" stroke="#33475b" stroke-width="1.5"/>
+<text x="1230" y="91.5" font-size="12" text-anchor="middle" fill="#1b2733">Ler e validar</text>
+<text x="1230" y="106.5" font-size="12" text-anchor="middle" fill="#1b2733">entradas (MVP +</text>
+<text x="1230" y="121.5" font-size="12" text-anchor="middle" fill="#1b2733">planilha do</text>
+<text x="1230" y="136.5" font-size="12" text-anchor="middle" fill="#1b2733">mutirão)</text>
+<rect x="266.0" y="218.0" width="128" height="64" rx="9" fill="#e8f1fb" stroke="#33475b" stroke-width="1.5"/>
+<text x="330" y="246.5" font-size="12" text-anchor="middle" fill="#1b2733">Ler cache local</text>
+<text x="330" y="261.5" font-size="12" text-anchor="middle" fill="#1b2733">(até 45 dias)</text>
+<path d="M470,225.0 L495.0,250 L470,275.0 L445.0,250 z" fill="#fff6d6" stroke="#33475b" stroke-width="1.5"/>
+<path d="M463,243 L477,257 M477,243 L463,257" stroke="#33475b" stroke-width="2.5"/>
+<text x="470" y="217" font-size="11.5" text-anchor="middle" fill="#1b2733" font-weight="600">Cache válido?</text>
+<rect x="406.0" y="338.0" width="128" height="64" rx="9" fill="#e8f1fb" stroke="#33475b" stroke-width="1.5"/>
+<text x="470" y="359.0" font-size="12" text-anchor="middle" fill="#1b2733">Registrar falha</text>
+<text x="470" y="374.0" font-size="12" text-anchor="middle" fill="#1b2733">crítica (nada é</text>
+<text x="470" y="389.0" font-size="12" text-anchor="middle" fill="#1b2733">publicado)</text>
+<circle cx="610" cy="370" r="18.0" fill="#fde8e8" stroke="#33475b" stroke-width="4"/>
+<path d="M603,377 L607,363 L612,372 L617,363" stroke="#b42318" fill="none" stroke-width="2"/>
+<text x="610" y="403.0" font-size="11.5" text-anchor="middle" fill="#1b2733">Falha crítica (código 2)</text>
+<rect x="116.0" y="498.0" width="128" height="64" rx="9" fill="#e8f1fb" stroke="#33475b" stroke-width="1.5"/>
+<text x="180" y="526.5" font-size="12" text-anchor="middle" fill="#1b2733">Pegar a próxima</text>
+<text x="180" y="541.5" font-size="12" text-anchor="middle" fill="#1b2733">casa do lote</text>
+<rect x="266.0" y="498.0" width="128" height="64" rx="9" fill="#e8f1fb" stroke="#33475b" stroke-width="1.5"/>
+<text x="330" y="519.0" font-size="12" text-anchor="middle" fill="#1b2733">Obter leituras</text>
+<text x="330" y="534.0" font-size="12" text-anchor="middle" fill="#1b2733">(API do MVP ou</text>
+<text x="330" y="549.0" font-size="12" text-anchor="middle" fill="#1b2733">planilha)</text>
+<path d="M480,505.0 L505.0,530 L480,555.0 L455.0,530 z" fill="#fff6d6" stroke="#33475b" stroke-width="1.5"/>
+<path d="M473,523 L487,537 M487,523 L473,537" stroke="#33475b" stroke-width="2.5"/>
+<text x="480" y="484" font-size="11.5" text-anchor="middle" fill="#1b2733" font-weight="600">Leituras ok (2 ou</text>
+<text x="480" y="497" font-size="11.5" text-anchor="middle" fill="#1b2733" font-weight="600">mais)?</text>
+<rect x="566.0" y="498.0" width="128" height="64" rx="9" fill="#e8f1fb" stroke="#33475b" stroke-width="1.5"/>
+<text x="630" y="519.0" font-size="12" text-anchor="middle" fill="#1b2733">Calcular consumo</text>
+<text x="630" y="534.0" font-size="12" text-anchor="middle" fill="#1b2733">e conta com a</text>
+<text x="630" y="549.0" font-size="12" text-anchor="middle" fill="#1b2733">tarifa do mês</text>
+<path d="M780,505.0 L805.0,530 L780,555.0 L755.0,530 z" fill="#fff6d6" stroke="#33475b" stroke-width="1.5"/>
+<path d="M773,523 L787,537 M787,523 L773,537" stroke="#33475b" stroke-width="2.5"/>
+<text x="780" y="484" font-size="11.5" text-anchor="middle" fill="#1b2733" font-weight="600">Acima do limite ou</text>
+<text x="780" y="497" font-size="11.5" text-anchor="middle" fill="#1b2733" font-weight="600">perto com calor?</text>
+<rect x="866.0" y="498.0" width="128" height="64" rx="9" fill="#e8f1fb" stroke="#33475b" stroke-width="1.5"/>
+<text x="930" y="519.0" font-size="12" text-anchor="middle" fill="#1b2733">Enviar alerta</text>
+<text x="930" y="534.0" font-size="12" text-anchor="middle" fill="#1b2733">push (sem</text>
+<text x="930" y="549.0" font-size="12" text-anchor="middle" fill="#1b2733">reenvio)</text>
+<path d="M1070,505.0 L1095.0,530 L1070,555.0 L1045.0,530 z" fill="#fff6d6" stroke="#33475b" stroke-width="1.5"/>
+<path d="M1063,523 L1077,537 M1077,523 L1063,537" stroke="#33475b" stroke-width="2.5"/>
+<path d="M1200,505.0 L1225.0,530 L1200,555.0 L1175.0,530 z" fill="#fff6d6" stroke="#33475b" stroke-width="1.5"/>
+<path d="M1193,523 L1207,537 M1207,523 L1193,537" stroke="#33475b" stroke-width="2.5"/>
+<text x="1231.0" y="534" font-size="11.5" text-anchor="start" fill="#1b2733" font-weight="600">Há mais casas?</text>
+<rect x="416.0" y="628.0" width="128" height="64" rx="9" fill="#e8f1fb" stroke="#33475b" stroke-width="1.5"/>
+<text x="480" y="649.0" font-size="12" text-anchor="middle" fill="#1b2733">Registrar FALHA</text>
+<text x="480" y="664.0" font-size="12" text-anchor="middle" fill="#1b2733">ou DADOS</text>
+<text x="480" y="679.0" font-size="12" text-anchor="middle" fill="#1b2733">INSUFICIENTES</text>
+<path d="M180,820.0 L205.0,845 L180,870.0 L155.0,845 z" fill="#fff6d6" stroke="#33475b" stroke-width="1.5"/>
+<path d="M173,838 L187,852 M187,838 L173,852" stroke="#33475b" stroke-width="2.5"/>
+<text x="149.0" y="836" font-size="11.5" text-anchor="end" fill="#1b2733" font-weight="600">Publicar?</text>
+<text x="149.0" y="849" font-size="11.5" text-anchor="end" fill="#1b2733" font-weight="600">(--publicar-azure</text>
+<text x="149.0" y="862" font-size="11.5" text-anchor="end" fill="#1b2733" font-weight="600">e ATUALIZAR)</text>
+<rect x="276.0" y="813.0" width="128" height="64" rx="9" fill="#e8f1fb" stroke="#33475b" stroke-width="1.5"/>
+<text x="340" y="826.5" font-size="12" text-anchor="middle" fill="#1b2733">Atualizar App</text>
+<text x="340" y="841.5" font-size="12" text-anchor="middle" fill="#1b2733">Service e</text>
+<text x="340" y="856.5" font-size="12" text-anchor="middle" fill="#1b2733">confirmar</text>
+<text x="340" y="871.5" font-size="12" text-anchor="middle" fill="#1b2733">/api/config</text>
+<path d="M490,820.0 L515.0,845 L490,870.0 L465.0,845 z" fill="#fff6d6" stroke="#33475b" stroke-width="1.5"/>
+<path d="M483,838 L497,852 M497,838 L483,852" stroke="#33475b" stroke-width="2.5"/>
+<rect x="576.0" y="813.0" width="128" height="64" rx="9" fill="#e8f1fb" stroke="#33475b" stroke-width="1.5"/>
+<text x="640" y="841.5" font-size="12" text-anchor="middle" fill="#1b2733">Gravar saídas,</text>
+<text x="640" y="856.5" font-size="12" text-anchor="middle" fill="#1b2733">logs e auditoria</text>
+<circle cx="790" cy="845" r="18.0" fill="#fde8e8" stroke="#33475b" stroke-width="4"/>
+<text x="790" y="878.0" font-size="11.5" text-anchor="middle" fill="#1b2733">Fim (código 0 ou 1)</text>
+</svg>

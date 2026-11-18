@@ -1,0 +1,59 @@
+{
+  "_comentario": "Configuracao do robo. Nenhum segredo aqui: tokens e codigos de casa reais ficam em variaveis de ambiente ou fora do Git.",
+
+  "mvp": {
+    "url_base": "https://contaclara-gs.azurewebsites.net",
+    "resource_group": "rg-contaclara",
+    "web_app": "contaclara-gs"
+  },
+
+  "aneel": {
+    "url_datastore": "https://dadosabertos.aneel.gov.br/api/3/action/datastore_search",
+    "recurso_bandeira_acionamento": "0591b8f6-fe54-437b-b72b-1aa2efd46e42",
+    "recurso_tarifas_homologadas": "fcf2906c-7c32-4b9b-a637-054e7a5234f4",
+    "distribuidora": "ELETROPAULO",
+    "distribuidora_nome_comercial": "Enel Distribuição São Paulo",
+    "filtro_tarifa": {
+      "DscSubGrupo": "B1",
+      "DscBaseTarifaria": "Tarifa de Aplicação",
+      "DscClasse": "Residencial",
+      "DscSubClasse": "Residencial",
+      "DscModalidadeTarifaria": "Convencional",
+      "DscDetalhe": "Não se aplica"
+    },
+    "cache_validade_dias": 45
+  },
+
+  "clima": {
+    "url": "https://api.open-meteo.com/v1/forecast",
+    "latitude": -23.65,
+    "longitude": -46.70,
+    "local": "Zona Sul de São Paulo (SP)",
+    "temperatura_calor_c": 32.0,
+    "dias_calor_para_alerta": 3
+  },
+
+  "tributos": {
+    "_comentario": "Aproximacao para o piloto. ICMS residencial em SP por faixa de consumo mensal; PIS/COFINS medio. Calculo 'por dentro': tarifa / (1 - aliquotas).",
+    "pis_cofins": 0.05,
+    "icms_faixas": [
+      {"ate_kwh": 90, "aliquota": 0.0},
+      {"ate_kwh": 200, "aliquota": 0.12},
+      {"ate_kwh": null, "aliquota": 0.18}
+    ],
+    "faixa_referencia_kwh": 150
+  },
+
+  "regras": {
+    "limite_padrao_reais": 150.0,
+    "fator_atencao_calor": 0.9,
+    "minimo_leituras": 2,
+    "bandeiras_aceitas_pelo_mvp": ["verde", "amarela", "vermelha1", "vermelha2"]
+  },
+
+  "http": {
+    "timeout_s": 30,
+    "tentativas": 3,
+    "espera_inicial_s": 2
+  }
+}

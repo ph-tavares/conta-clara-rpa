@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL"
+  xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC"
+  xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  id="defs_conta_clara" targetNamespace="https://github.com/ph-tavares/conta-clara-rpa" exporter="gerar_bpmn.py" exporterVersion="1.0">
+  <bpmn:process id="robo_mensal_conta_clara" name="Robô mensal Conta Clara" isExecutable="false">
+    <bpmn:startEvent id="inicio" name="Todo dia, 08h"><bpmn:outgoing>f0</bpmn:outgoing><bpmn:timerEventDefinition id="def_timer"><bpmn:timeCycle xsi:type="bpmn:tFormalExpression">0 11 * * *</bpmn:timeCycle></bpmn:timerEventDefinition></bpmn:startEvent>
+    <bpmn:serviceTask id="t_coleta" name="Coletar bandeira e tarifa do mês (API ANEEL)"><bpmn:incoming>f0</bpmn:incoming><bpmn:outgoing>f1</bpmn:outgoing></bpmn:serviceTask>
+    <bpmn:exclusiveGateway id="gw_aneel" name="ANEEL ok e dado válido?"><bpmn:incoming>f1</bpmn:incoming><bpmn:outgoing>f2</bpmn:outgoing><bpmn:outgoing>f4</bpmn:outgoing></bpmn:exclusiveGateway>
+    <bpmn:serviceTask id="t_cache_salva" name="Salvar cache da coleta"><bpmn:incoming>f2</bpmn:incoming><bpmn:outgoing>f3</bpmn:outgoing></bpmn:serviceTask>
+    <bpmn:exclusiveGateway id="m1" name=""><bpmn:incoming>f3</bpmn:incoming><bpmn:incoming>f6</bpmn:incoming><bpmn:outgoing>f9</bpmn:outgoing></bpmn:exclusiveGateway>
+    <bpmn:serviceTask id="t_clima" name="Consultar previsão de calor (Open-Meteo)"><bpmn:incoming>f9</bpmn:incoming><bpmn:outgoing>f10</bpmn:outgoing></bpmn:serviceTask>
+    <bpmn:serviceTask id="t_contrato" name="Gerar contrato tarifa_vigente (.json e .env)"><bpmn:incoming>f10</bpmn:incoming><bpmn:outgoing>f11</bpmn:outgoing></bpmn:serviceTask>
+    <bpmn:serviceTask id="t_config" name="Ler /api/config do MVP e decidir a atualização"><bpmn:incoming>f11</bpmn:incoming><bpmn:outgoing>f12</bpmn:outgoing></bpmn:serviceTask>
+    <bpmn:serviceTask id="t_entradas" name="Ler e validar entradas (MVP + planilha do mutirão)"><bpmn:incoming>f12</bpmn:incoming><bpmn:outgoing>f13</bpmn:outgoing></bpmn:serviceTask>
+    <bpmn:serviceTask id="t_cache_le" name="Ler cache local (até 45 dias)"><bpmn:incoming>f4</bpmn:incoming><bpmn:outgoing>f5</bpmn:outgoing></bpmn:serviceTask>
+    <bpmn:exclusiveGateway id="gw_cache" name="Cache válido?"><bpmn:incoming>f5</bpmn:incoming><bpmn:outgoing>f6</bpmn:outgoing><bpmn:outgoing>f7</bpmn:outgoing></bpmn:exclusiveGateway>
+    <bpmn:serviceTask id="t_critica" name="Registrar falha crítica (nada é publicado)"><bpmn:incoming>f7</bpmn:incoming><bpmn:outgoing>f8</bpmn:outgoing></bpmn:serviceTask>
+    <bpmn:endEvent id="fim_erro" name="Falha crítica (código 2)"><bpmn:incoming>f8</bpmn:incoming><bpmn:errorEventDefinition id="def_erro" /></bpmn:endEvent>
+    <bpmn:serviceTask id="t_proxima" name="Pegar a próxima casa do lote"><bpmn:incoming>f13</bpmn:incoming><bpmn:incoming>f24</bpmn:incoming><bpmn:outgoing>f14</bpmn:outgoing></bpmn:serviceTask>
+    <bpmn:serviceTask id="t_leituras" name="Obter leituras (API do MVP ou planilha)"><bpmn:incoming>f14</bpmn:incoming><bpmn:outgoing>f15</bpmn:outgoing></bpmn:serviceTask>
+    <bpmn:exclusiveGateway id="gw_leit" name="Leituras ok (2 ou mais)?"><bpmn:incoming>f15</bpmn:incoming><bpmn:outgoing>f16</bpmn:outgoing><bpmn:outgoing>f17</bpmn:outgoing></bpmn:exclusiveGateway>
+    <bpmn:serviceTask id="t_calc" name="Calcular consumo e conta com a tarifa do mês"><bpmn:incoming>f16</bpmn:incoming><bpmn:outgoing>f19</bpmn:outgoing></bpmn:serviceTask>
+    <bpmn:exclusiveGateway id="gw_lim" name="Acima do limite ou perto com calor?"><bpmn:incoming>f19</bpmn:incoming><bpmn:outgoing>f20</bpmn:outgoing><bpmn:outgoing>f21</bpmn:outgoing></bpmn:exclusiveGateway>
+    <bpmn:serviceTask id="t_alerta" name="Enviar alerta push (sem reenvio)"><bpmn:incoming>f20</bpmn:incoming><bpmn:outgoing>f22</bpmn:outgoing></bpmn:serviceTask>
+    <bpmn:exclusiveGateway id="m2" name=""><bpmn:incoming>f18</bpmn:incoming><bpmn:incoming>f21</bpmn:incoming><bpmn:incoming>f22</bpmn:incoming><bpmn:outgoing>f23</bpmn:outgoing></bpmn:exclusiveGateway>
+    <bpmn:exclusiveGateway id="gw_mais" name="Há mais casas?"><bpmn:incoming>f23</bpmn:incoming><bpmn:outgoing>f24</bpmn:outgoing><bpmn:outgoing>f25</bpmn:outgoing></bpmn:exclusiveGateway>
+    <bpmn:serviceTask id="t_reg" name="Registrar FALHA ou DADOS INSUFICIENTES"><bpmn:incoming>f17</bpmn:incoming><bpmn:outgoing>f18</bpmn:outgoing></bpmn:serviceTask>
+    <bpmn:exclusiveGateway id="gw_pub" name="Publicar? (--publicar-azure e ATUALIZAR)"><bpmn:incoming>f25</bpmn:incoming><bpmn:outgoing>f26</bpmn:outgoing><bpmn:outgoing>f27</bpmn:outgoing></bpmn:exclusiveGateway>
+    <bpmn:serviceTask id="t_pub" name="Atualizar App Service e confirmar /api/config"><bpmn:incoming>f26</bpmn:incoming><bpmn:outgoing>f28</bpmn:outgoing></bpmn:serviceTask>
+    <bpmn:exclusiveGateway id="m3" name=""><bpmn:incoming>f27</bpmn:incoming><bpmn:incoming>f28</bpmn:incoming><bpmn:outgoing>f29</bpmn:outgoing></bpmn:exclusiveGateway>
+    <bpmn:serviceTask id="t_saidas" name="Gravar saídas, logs e auditoria"><bpmn:incoming>f29</bpmn:incoming><bpmn:outgoing>f30</bpmn:outgoing></bpmn:serviceTask>
+    <bpmn:endEvent id="fim" name="Fim (código 0 ou 1)"><bpmn:incoming>f30</bpmn:incoming></bpmn:endEvent>
+    <bpmn:sequenceFlow id="f0" name="" sourceRef="inicio" targetRef="t_coleta" />
+    <bpmn:sequenceFlow id="f1" name="" sourceRef="t_coleta" targetRef="gw_aneel" />
+    <bpmn:sequenceFlow id="f2" name="sim" sourceRef="gw_aneel" targetRef="t_cache_salva" />
+    <bpmn:sequenceFlow id="f3" name="" sourceRef="t_cache_salva" targetRef="m1" />
+    <bpmn:sequenceFlow id="f4" name="não" sourceRef="gw_aneel" targetRef="t_cache_le" />
+    <bpmn:sequenceFlow id="f5" name="" sourceRef="t_cache_le" targetRef="gw_cache" />
+    <bpmn:sequenceFlow id="f6" name="sim" sourceRef="gw_cache" targetRef="m1" />
+    <bpmn:sequenceFlow id="f7" name="não" sourceRef="gw_cache" targetRef="t_critica" />
+    <bpmn:sequenceFlow id="f8" name="" sourceRef="t_critica" targetRef="fim_erro" />
+    <bpmn:sequenceFlow id="f9" name="" sourceRef="m1" targetRef="t_clima" />
+    <bpmn:sequenceFlow id="f10" name="" sourceRef="t_clima" targetRef="t_contrato" />
+    <bpmn:sequenceFlow id="f11" name="" sourceRef="t_contrato" targetRef="t_config" />
+    <bpmn:sequenceFlow id="f12" name="" sourceRef="t_config" targetRef="t_entradas" />
+    <bpmn:sequenceFlow id="f13" name="" sourceRef="t_entradas" targetRef="t_proxima" />
+    <bpmn:sequenceFlow id="f14" name="" sourceRef="t_proxima" targetRef="t_leituras" />
+    <bpmn:sequenceFlow id="f15" name="" sourceRef="t_leituras" targetRef="gw_leit" />
+    <bpmn:sequenceFlow id="f16" name="sim" sourceRef="gw_leit" targetRef="t_calc" />
+    <bpmn:sequenceFlow id="f17" name="não" sourceRef="gw_leit" targetRef="t_reg" />
+    <bpmn:sequenceFlow id="f18" name="" sourceRef="t_reg" targetRef="m2" />
+    <bpmn:sequenceFlow id="f19" name="" sourceRef="t_calc" targetRef="gw_lim" />
+    <bpmn:sequenceFlow id="f20" name="sim" sourceRef="gw_lim" targetRef="t_alerta" />
+    <bpmn:sequenceFlow id="f21" name="não" sourceRef="gw_lim" targetRef="m2" />
+    <bpmn:sequenceFlow id="f22" name="" sourceRef="t_alerta" targetRef="m2" />
+    <bpmn:sequenceFlow id="f23" name="" sourceRef="m2" targetRef="gw_mais" />
+    <bpmn:sequenceFlow id="f24" name="sim" sourceRef="gw_mais" targetRef="t_proxima" />
+    <bpmn:sequenceFlow id="f25" name="não" sourceRef="gw_mais" targetRef="gw_pub" />
+    <bpmn:sequenceFlow id="f26" name="sim" sourceRef="gw_pub" targetRef="t_pub" />
+    <bpmn:sequenceFlow id="f27" name="não" sourceRef="gw_pub" targetRef="m3" />
+    <bpmn:sequenceFlow id="f28" name="" sourceRef="t_pub" targetRef="m3" />
+    <bpmn:sequenceFlow id="f29" name="" sourceRef="m3" targetRef="t_saidas" />
+    <bpmn:sequenceFlow id="f30" name="" sourceRef="t_saidas" targetRef="fim" />
+    <bpmn:textAnnotation id="n1"><bpmn:text>Retry 3x com espera exponencial em toda chamada HTTP</bpmn:text></bpmn:textAnnotation>
+    <bpmn:textAnnotation id="n2"><bpmn:text>Falha no clima só desliga a regra de calor</bpmn:text></bpmn:textAnnotation>
+    <bpmn:textAnnotation id="n3"><bpmn:text>Loop: cada casa é independente; erro numa casa não para o lote</bpmn:text></bpmn:textAnnotation>
+    <bpmn:textAnnotation id="n4"><bpmn:text>Linhas inválidas, duplicadas ou fora de sequência vão para rejeitados.csv</bpmn:text></bpmn:textAnnotation>
+  </bpmn:process>
+  <bpmndi:BPMNDiagram id="diagrama">
+    <bpmndi:BPMNPlane id="plano" bpmnElement="robo_mensal_conta_clara">
+      <bpmndi:BPMNShape id="inicio_di" bpmnElement="inicio"><dc:Bounds x="32" y="92" width="36" height="36" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="t_coleta_di" bpmnElement="t_coleta"><dc:Bounds x="116" y="78" width="128" height="64" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="gw_aneel_di" bpmnElement="gw_aneel" isMarkerVisible="true"><dc:Bounds x="305" y="85" width="50" height="50" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="t_cache_salva_di" bpmnElement="t_cache_salva"><dc:Bounds x="406" y="78" width="128" height="64" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="m1_di" bpmnElement="m1" isMarkerVisible="true"><dc:Bounds x="585" y="85" width="50" height="50" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="t_clima_di" bpmnElement="t_clima"><dc:Bounds x="686" y="78" width="128" height="64" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="t_contrato_di" bpmnElement="t_contrato"><dc:Bounds x="846" y="78" width="128" height="64" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="t_config_di" bpmnElement="t_config"><dc:Bounds x="1006" y="78" width="128" height="64" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="t_entradas_di" bpmnElement="t_entradas"><dc:Bounds x="1166" y="78" width="128" height="64" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="t_cache_le_di" bpmnElement="t_cache_le"><dc:Bounds x="266" y="218" width="128" height="64" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="gw_cache_di" bpmnElement="gw_cache" isMarkerVisible="true"><dc:Bounds x="445" y="225" width="50" height="50" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="t_critica_di" bpmnElement="t_critica"><dc:Bounds x="406" y="338" width="128" height="64" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="fim_erro_di" bpmnElement="fim_erro"><dc:Bounds x="592" y="352" width="36" height="36" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="t_proxima_di" bpmnElement="t_proxima"><dc:Bounds x="116" y="498" width="128" height="64" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="t_leituras_di" bpmnElement="t_leituras"><dc:Bounds x="266" y="498" width="128" height="64" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="gw_leit_di" bpmnElement="gw_leit" isMarkerVisible="true"><dc:Bounds x="455" y="505" width="50" height="50" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="t_calc_di" bpmnElement="t_calc"><dc:Bounds x="566" y="498" width="128" height="64" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="gw_lim_di" bpmnElement="gw_lim" isMarkerVisible="true"><dc:Bounds x="755" y="505" width="50" height="50" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="t_alerta_di" bpmnElement="t_alerta"><dc:Bounds x="866" y="498" width="128" height="64" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="m2_di" bpmnElement="m2" isMarkerVisible="true"><dc:Bounds x="1045" y="505" width="50" height="50" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="gw_mais_di" bpmnElement="gw_mais" isMarkerVisible="true"><dc:Bounds x="1175" y="505" width="50" height="50" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="t_reg_di" bpmnElement="t_reg"><dc:Bounds x="416" y="628" width="128" height="64" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="gw_pub_di" bpmnElement="gw_pub" isMarkerVisible="true"><dc:Bounds x="155" y="820" width="50" height="50" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="t_pub_di" bpmnElement="t_pub"><dc:Bounds x="276" y="813" width="128" height="64" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="m3_di" bpmnElement="m3" isMarkerVisible="true"><dc:Bounds x="465" y="820" width="50" height="50" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="t_saidas_di" bpmnElement="t_saidas"><dc:Bounds x="576" y="813" width="128" height="64" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="fim_di" bpmnElement="fim"><dc:Bounds x="772" y="827" width="36" height="36" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="f0_di" bpmnElement="f0"><di:waypoint x="68" y="110" /><di:waypoint x="116" y="110" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="f1_di" bpmnElement="f1"><di:waypoint x="244" y="110" /><di:waypoint x="305" y="110" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="f2_di" bpmnElement="f2"><di:waypoint x="355" y="110" /><di:waypoint x="406" y="110" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="f3_di" bpmnElement="f3"><di:waypoint x="534" y="110" /><di:waypoint x="585" y="110" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="f4_di" bpmnElement="f4"><di:waypoint x="330" y="135" /><di:waypoint x="330" y="218" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="f5_di" bpmnElement="f5"><di:waypoint x="394" y="250" /><di:waypoint x="445" y="250" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="f6_di" bpmnElement="f6"><di:waypoint x="495" y="250" /><di:waypoint x="610" y="250" /><di:waypoint x="610" y="135" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="f7_di" bpmnElement="f7"><di:waypoint x="470" y="275" /><di:waypoint x="470" y="338" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="f8_di" bpmnElement="f8"><di:waypoint x="534" y="370" /><di:waypoint x="592" y="370" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="f9_di" bpmnElement="f9"><di:waypoint x="635" y="110" /><di:waypoint x="686" y="110" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="f10_di" bpmnElement="f10"><di:waypoint x="814" y="110" /><di:waypoint x="846" y="110" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="f11_di" bpmnElement="f11"><di:waypoint x="974" y="110" /><di:waypoint x="1006" y="110" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="f12_di" bpmnElement="f12"><di:waypoint x="1134" y="110" /><di:waypoint x="1166" y="110" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="f13_di" bpmnElement="f13"><di:waypoint x="1230" y="142" /><di:waypoint x="1230" y="422" /><di:waypoint x="90" y="422" /><di:waypoint x="90" y="530" /><di:waypoint x="116" y="530" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="f14_di" bpmnElement="f14"><di:waypoint x="244" y="530" /><di:waypoint x="266" y="530" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="f15_di" bpmnElement="f15"><di:waypoint x="394" y="530" /><di:waypoint x="455" y="530" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="f16_di" bpmnElement="f16"><di:waypoint x="505" y="530" /><di:waypoint x="566" y="530" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="f17_di" bpmnElement="f17"><di:waypoint x="480" y="555" /><di:waypoint x="480" y="628" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="f18_di" bpmnElement="f18"><di:waypoint x="544" y="660" /><di:waypoint x="1070" y="660" /><di:waypoint x="1070" y="555" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="f19_di" bpmnElement="f19"><di:waypoint x="694" y="530" /><di:waypoint x="755" y="530" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="f20_di" bpmnElement="f20"><di:waypoint x="805" y="530" /><di:waypoint x="866" y="530" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="f21_di" bpmnElement="f21"><di:waypoint x="780" y="555" /><di:waypoint x="780" y="600" /><di:waypoint x="1070" y="600" /><di:waypoint x="1070" y="555" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="f22_di" bpmnElement="f22"><di:waypoint x="994" y="530" /><di:waypoint x="1045" y="530" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="f23_di" bpmnElement="f23"><di:waypoint x="1095" y="530" /><di:waypoint x="1175" y="530" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="f24_di" bpmnElement="f24"><di:waypoint x="1200" y="505" /><di:waypoint x="1200" y="470" /><di:waypoint x="180" y="470" /><di:waypoint x="180" y="498" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="f25_di" bpmnElement="f25"><di:waypoint x="1200" y="555" /><di:waypoint x="1200" y="725" /><di:waypoint x="180" y="725" /><di:waypoint x="180" y="820" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="f26_di" bpmnElement="f26"><di:waypoint x="205" y="845" /><di:waypoint x="276" y="845" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="f27_di" bpmnElement="f27"><di:waypoint x="180" y="870" /><di:waypoint x="180" y="905" /><di:waypoint x="490" y="905" /><di:waypoint x="490" y="870" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="f28_di" bpmnElement="f28"><di:waypoint x="404" y="845" /><di:waypoint x="465" y="845" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="f29_di" bpmnElement="f29"><di:waypoint x="515" y="845" /><di:waypoint x="576" y="845" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="f30_di" bpmnElement="f30"><di:waypoint x="704" y="845" /><di:waypoint x="772" y="845" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="n1_di" bpmnElement="n1"><dc:Bounds x="100" y="183" width="160" height="44" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="n2_di" bpmnElement="n2"><dc:Bounds x="670" y="183" width="160" height="44" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="n3_di" bpmnElement="n3"><dc:Bounds x="740" y="668" width="160" height="44" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="n4_di" bpmnElement="n4"><dc:Bounds x="990" y="183" width="160" height="44" /></bpmndi:BPMNShape>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>

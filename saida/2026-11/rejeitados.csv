@@ -1,0 +1,8 @@
+﻿arquivo;linha;id_casa;motivo
+leituras_mutirao.csv;21;CASA-005;"linha duplicada (igual a linha 20); ignorada"
+leituras_mutirao.csv;34;CASA-007;"duas leituras diferentes no mesmo dia (linha 33: 50668); ambas descartadas"
+leituras_mutirao.csv;35;CASA DA ESQUINA;id_casa fora do padrao CASA-000 (nao use nome ou endereco)
+leituras_mutirao.csv;36;CASA-008;kwh_medidor invalido: '48.3O1'
+leituras_mutirao.csv;38;CASA-009;data no futuro
+leituras_mutirao.csv;39;CASA-010;data invalida: '17/11/2026' (use AAAA-MM-DD)
+leituras_mutirao.csv;27;CASA-006;"leitura fora da sequencia do medidor (12105 em 2026-11-10, maior que 12070 em 2026-11-17); descartada"
