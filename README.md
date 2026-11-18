@@ -120,6 +120,7 @@ Detalhes e o formato do contrato estão em [`integracao-mvp/README.md`](integrac
 
 - Toda chamada HTTP tem tempo limite e **3 tentativas com espera exponencial** (2, 4 e 8 s). Erro 4xx não é repetido.
 - **ANEEL fora:** usa o cache local da última coleta boa (até 45 dias). Sem cache: **falha crítica**, e nada é publicado com dado duvidoso.
+- **No GitHub Actions:** a API da ANEEL não aceita conexão dos servidores do GitHub (EUA). Quando não há cache restaurado, o workflow parte da última coleta válida feita do Brasil (`config/cache_aneel_semente.json`), e o robô termina como sucesso parcial, com o uso do cache registrado no log. A validade de 45 dias continua valendo.
 - **Dado absurdo** (tarifa fora de 0,20 a 3,00 R$/kWh, número ilegível, resposta vazia): tratado como falha da fonte.
 - **Planilha:** ausente, vazia, sem colunas ou com codificação errada gera erro registrado, e o lote segue com a outra origem. Linhas inválidas, duplicadas, conflitantes ou fora da sequência do medidor vão para `rejeitados.csv` com linha e motivo.
 - **Uma casa com erro** (ex.: código revogado → 401) não interrompe o lote.
