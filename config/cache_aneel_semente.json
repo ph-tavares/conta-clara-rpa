@@ -1,0 +1,20 @@
+{
+  "salvo_em": "2026-11-18T10:55:56.647444-03:00",
+  "bandeira": {
+    "competencia": "2026-11",
+    "nome_aneel": "Verde",
+    "chave": "verde",
+    "adicional_rs_mwh": 0.0,
+    "provisoria": false,
+    "fonte": "ANEEL - Bandeira Tarifaria - Acionamento"
+  },
+  "tarifa": {
+    "distribuidora": "ELETROPAULO",
+    "resolucao": "RESOLUÇÃO HOMOLOGATÓRIA Nº 3.596, DE 3 DE JULHO DE 2026",
+    "inicio_vigencia": "2026-07-04",
+    "fim_vigencia": "2027-07-03",
+    "tusd_rs_mwh": 472.42,
+    "te_rs_mwh": 316.96,
+    "fonte": "ANEEL - Tarifas Homologadas das Distribuidoras"
+  }
+}

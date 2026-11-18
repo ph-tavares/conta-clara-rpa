@@ -46,6 +46,16 @@ jobs:
           path: estado/
           key: estado-robo-${{ github.run_id }}
           restore-keys: estado-robo-
+      # A API da ANEEL nao aceita conexao dos runners do GitHub (EUA). Sem cache restaurado, o robo
+      # parte da ultima coleta valida feita do Brasil (config/cache_aneel_semente.json). A validade
+      # de 45 dias continua valendo: semente vencida -> falha critica, nada e publicado.
+      - name: Semente do cache da ANEEL (so quando nao ha cache restaurado)
+        run: |
+          if [ ! -f estado/cache_aneel.json ]; then
+            mkdir -p estado
+            cp config/cache_aneel_semente.json estado/cache_aneel.json
+            echo "cache da ANEEL iniciado pela semente de $(python -c 'import json;print(json.load(open("estado/cache_aneel.json"))["salvo_em"])')"
+          fi
       - name: Casas do MVP (codigos vem de um secret, nunca do Git)
         env:
           CASAS_MVP_CSV: ${{ secrets.CASAS_MVP_CSV }}
