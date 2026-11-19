@@ -6,7 +6,7 @@
 python -m unittest discover -s tests -v
 ```
 
-Não precisa instalar nada, nem ter internet: as APIs da ANEEL, do Open-Meteo, do MVP e do ntfy são substituídas por um dublê (`tests/apoio.py`). O teste do cliente HTTP sobe um servidor local de verdade para provar as novas tentativas. Resultado da última execução: **34 testes, todos ok** ([`assets/07-testes-automatizados.png`](../assets/07-testes-automatizados.png)).
+Não precisa instalar nada, nem ter internet: as APIs da ANEEL, do Open-Meteo, do MVP e do ntfy são substituídas por um dublê (`tests/apoio.py`). O teste do cliente HTTP sobe um servidor local de verdade para provar as novas tentativas. Resultado da última execução: **38 testes, todos ok** ([`assets/07-testes-automatizados.png`](../assets/07-testes-automatizados.png)).
 
 ## Cenários automatizados
 

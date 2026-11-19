@@ -21,7 +21,7 @@ Grave a tela com o **Xbox Game Bar** (Win + G) ou o **OBS**. Suba no YouTube com
 | 1:20–1:35 | Navegador/celular com o ntfy | "Os alertas chegaram no celular, só com o código pseudônimo da casa, sem nenhum dado pessoal." |
 | 1:35–1:55 | `saida/2026-11/tarifa_vigente.json` e `/api/config` do MVP | "A integração com o MVP: o robô gera este contrato com `TARIFA_KWH` e `BANDEIRA`, no mesmo formato que o MVP lê, e pode publicar direto no App Service com `--publicar-azure`, confirmando em `/api/config`. Ele também consome a API do MVP para buscar as leituras das casas." *(Se tiver `az login`, rode `python src/executar.py --publicar-azure` e mostre o `/api/config` mudando para 0.9511 e verde.)* |
 | 1:55–2:35 | Terminal: `python src/executar.py --simular-falha aneel` e depois `--simular-falha aneel-sem-cache` | "Tratamento de falhas: com a ANEEL fora do ar, o robô tenta 3 vezes com espera crescente e recupera pela última coleta válida, terminando como sucesso parcial. Sem cache, ele para com falha crítica, código 2, e não publica nada com dado duvidoso." |
-| 2:35–2:50 | `logs/auditoria.jsonl` e `python -m unittest discover -s tests` | "Cada execução gera log com data e hora e uma trilha de auditoria em JSON. E há 34 testes automáticos cobrindo sucesso, decisão e falha." |
+| 2:35–2:50 | `logs/auditoria.jsonl` e `python -m unittest discover -s tests` | "Cada execução gera log com data e hora e uma trilha de auditoria em JSON. E há 38 testes automáticos cobrindo sucesso, decisão e falha." |
 | 2:50–3:00 | README no GitHub | "Tudo está no repositório público, com README, BPMN, PDD e as evidências. Obrigado!" |
 
 ---

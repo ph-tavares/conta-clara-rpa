@@ -1,0 +1,28 @@
+2026-11-18 11:38:14 | INFO    | robo          | === Robo Conta Clara | execucao 20261118-113814-659c | competencia 2026-11 ===
+2026-11-18 11:38:15 | INFO    | robo          | ANEEL: bandeira Verde (adicional R$ 0.00/MWh) | tarifa B1 ELETROPAULO: TUSD 472.42 + TE 316.96 R$/MWh (RESOLUÇÃO HOMOLOGATÓRIA Nº 3.596, DE 3 DE JUL)
+2026-11-18 11:38:16 | INFO    | robo          | Open-Meteo: 1 de 7 dias com maxima >= 32 C (max 32.3 C) -> onda de calor: nao
+2026-11-18 11:38:16 | INFO    | robo          | Contrato para o MVP gerado: TARIFA_KWH=0.9511 BANDEIRA=verde (saida/2026-11/tarifa_vigente.json)
+2026-11-18 11:38:16 | INFO    | robo          | MVP no ar (versao 7bae07f): hoje usa TARIFA_KWH=0.92 BANDEIRA=amarela
+2026-11-18 11:38:16 | INFO    | robo          | Decisao sobre o MVP: ATUALIZAR: MVP usa 0.92/amarela, o mes pede 0.9511/verde
+2026-11-18 11:38:16 | INFO    | robo          | Entrada casas_mvp.csv: 1 casa(s) valida(s), 0 linha(s) rejeitada(s)
+2026-11-18 11:38:16 | INFO    | robo          | Entrada leituras_mutirao.csv: 8 casa(s) valida(s), 7 linha(s) rejeitada(s)
+2026-11-18 11:38:16 | WARNING | robo          | Rejeitada leituras_mutirao.csv linha 21 (CASA-005): linha duplicada (igual a linha 20); ignorada
+2026-11-18 11:38:16 | WARNING | robo          | Rejeitada leituras_mutirao.csv linha 34 (CASA-007): duas leituras diferentes no mesmo dia (linha 33: 50668); ambas descartadas
+2026-11-18 11:38:16 | WARNING | robo          | Rejeitada leituras_mutirao.csv linha 35 (CASA DA ESQUINA): id_casa fora do padrao CASA-000 (nao use nome ou endereco)
+2026-11-18 11:38:16 | WARNING | robo          | Rejeitada leituras_mutirao.csv linha 36 (CASA-008): kwh_medidor invalido: '48.3O1'
+2026-11-18 11:38:16 | WARNING | robo          | Rejeitada leituras_mutirao.csv linha 38 (CASA-009): data no futuro
+2026-11-18 11:38:16 | WARNING | robo          | Rejeitada leituras_mutirao.csv linha 39 (CASA-010): data invalida: '17/11/2026' (use AAAA-MM-DD)
+2026-11-18 11:38:16 | WARNING | robo          | Rejeitada leituras_mutirao.csv linha 27 (CASA-006): leitura fora da sequencia do medidor (12105 em 2026-11-10, maior que 12070 em 2026-11-17); descartada
+2026-11-18 11:38:17 | INFO    | robo          | [1/9] MVP-DEMO (cod#5ef73fa4) | ACIMA_DO_LIMITE | proj 172.5 kWh | R$ 164.06 (limite 150.00) | alerta: enviado
+2026-11-18 11:38:17 | INFO    | robo          | [2/9] CASA-001 | OK | proj 90.0 kWh | R$ 74.78 (limite 120.00) | alerta: nao
+2026-11-18 11:38:17 | INFO    | robo          | [3/9] CASA-002 | ACIMA_DO_LIMITE | proj 213.2 kWh | R$ 218.57 (limite 180.00) | alerta: enviado
+2026-11-18 11:38:17 | INFO    | robo          | [4/9] CASA-003 | OK | proj 138.2 kWh | R$ 131.44 (limite 140.00) | alerta: nao
+2026-11-18 11:38:17 | INFO    | robo          | [5/9] CASA-004 | DADOS_INSUFICIENTES | proj - kWh | R$ - (limite 130.00) | alerta: nao | precisa de 2 leituras em dias diferentes
+2026-11-18 11:38:17 | INFO    | robo          | [6/9] CASA-005 | OK | proj 150.0 kWh | R$ 142.66 (limite 200.00) | alerta: nao
+2026-11-18 11:38:17 | INFO    | robo          | [7/9] CASA-006 | OK | proj 75.0 kWh | R$ 62.32 (limite 100.00) | alerta: nao
+2026-11-18 11:38:18 | INFO    | robo          | [8/9] CASA-007 | ACIMA_DO_LIMITE | proj 180.0 kWh | R$ 171.20 (limite 170.00) | alerta: enviado
+2026-11-18 11:38:18 | INFO    | robo          | [9/9] CASA-008 | DADOS_INSUFICIENTES | proj - kWh | R$ - (limite 150.00) | alerta: nao | precisa de 2 leituras em dias diferentes
+2026-11-18 11:38:18 | INFO    | robo.mvp      | publicando no App Service contaclara-gs: TARIFA_KWH=0.9511 BANDEIRA=verde
+2026-11-18 11:38:51 | INFO    | robo.mvp      | MVP confirmou os valores novos em /api/config
+2026-11-18 11:38:51 | INFO    | robo          | === Fim: SUCESSO (codigo 0) | 9 casa(s) | por status {'ACIMA_DO_LIMITE': 3, 'OK': 4, 'DADOS_INSUFICIENTES': 2} | 3 alerta(s) | 7 linha(s) rejeitada(s) ===
+2026-11-18 11:38:51 | INFO    | robo          | Saidas em saida/2026-11/ | log em logs/robo-20261118-113814-659c.log | auditoria em logs/auditoria.jsonl

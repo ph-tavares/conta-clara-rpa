@@ -132,7 +132,7 @@
   <tr><td>Tarifa sem tributos</td><td>(TUSD + TE) ÷ 1000. Em nov/2026, ELETROPAULO B1 residencial convencional, REH nº 3.596/2026: (472,42 + 316,96) ÷ 1000 = <b>0,78938 R$/kWh</b></td></tr>
   <tr><td>Tributos ("por dentro", como na fatura)</td><td>tarifa ÷ (1 − ICMS − PIS/COFINS). ICMS residencial SP por faixa: até 90 kWh 0%, até 200 kWh 12%, acima 18%; PIS/COFINS 5% (aproximação configurável em <code>config.json</code>). O contrato do MVP usa a faixa de referência de 150 kWh: 0,78938 ÷ 0,83 = <b>0,9511 R$/kWh</b></td></tr>
   <tr><td>Bandeira</td><td>competência AAAA-MM-01. Nome ANEEL convertido para as chaves do MVP (<code>verde</code>, <code>amarela</code>, <code>vermelha1</code>, <code>vermelha2</code>); adicional R$/MWh ÷ 10 = R$ por 100 kWh. Mês ainda não publicado: usa o último e marca <code>bandeira_provisoria</code></td></tr>
-  <tr><td>Consumo e conta</td><td>consumo diário = (última − primeira leitura) ÷ dias; projeção = ×30; conta = kWh × tarifa da faixa + kWh/100 × adicional (mesma fórmula do MVP: 172,5 kWh com 0,92 + amarela = R$ 161,95, igual à tela)</td></tr>
+  <tr><td>Consumo e conta</td><td>consumo diário = (última − primeira leitura) ÷ dias; projeção = ×30; conta = kWh × tarifa da faixa + kWh/100 × adicional (mesma fórmula do MVP: 172,5 kWh com 0,92 + amarela = R$ 161,95, o valor da tela antes da publicação; com 0,9511 + verde = R$ 164,06, o valor depois)</td></tr>
   <tr><td><b>Decisão por casa</b></td><td><code>ACIMA_DO_LIMITE</code> se conta &gt; limite; <code>ATENCAO_CALOR</code> se conta ≥ 90% do limite <b>e</b> 3 ou mais dias com máxima ≥ 32 °C; <code>DADOS_INSUFICIENTES</code> com menos de 2 leituras válidas; senão <code>OK</code></td></tr>
   <tr><td><b>Decisão sobre o MVP</b></td><td><code>ATUALIZAR</code> (valores diferentes) · <code>SEM_MUDANCA</code> · <code>NAO_PUBLICAR</code> (bandeira sem suporte, ex.: escassez hídrica, que pede revisão humana) · <code>INDEFINIDA</code> (MVP fora)</td></tr>
   <tr><td><b>Repetição</b></td><td>laço sobre a coleção de casas (MVP + mutirão); cada casa é processada e registrada de forma independente</td></tr>
@@ -167,7 +167,7 @@
 <h2>8. Integração com o MVP</h2>
 <p>A integração tem dois sentidos, e os dois são verificáveis:</p>
 <ul>
-  <li><b>O robô consome o MVP (API):</b> lê <code>GET /api/config</code>, que hoje mostra <code>tarifa_kwh 0.92</code> e <code>bandeira amarela</code>, para decidir a atualização, e lê <code>GET /api/leituras</code> da casa de demonstração (código no cabeçalho <code>X-Codigo-Casa</code>) para recalcular a estimativa. A tela do MVP mostra R$ 161,95 com a configuração fixa; com a tarifa real de novembro, o robô calcula <b>R$ 164,06</b> e alerta, porque o limite dessa casa é R$ 150.</li>
+  <li><b>O robô consome o MVP (API):</b> lê <code>GET /api/config</code>, que antes da primeira publicação mostrava <code>tarifa_kwh 0.92</code> e <code>bandeira amarela</code>, para decidir a atualização, e lê <code>GET /api/leituras</code> da casa de demonstração (código no cabeçalho <code>X-Codigo-Casa</code>) para recalcular a estimativa. Com a configuração fixa, a tela mostrava R$ 161,95; com a tarifa real de novembro, o robô calcula <b>R$ 164,06</b> e alerta, porque o limite dessa casa é R$ 150. Depois da publicação de 18/11/2026, <code>/api/config</code> mostra <code>0.9511</code> e <code>verde</code>, e a tela mostra os mesmos R$ 164,06 (Figura 10).</li>
   <li><b>O MVP consome o robô (arquivo estruturado e configuração):</b> o contrato <code>saida/tarifa_vigente.json</code> (<code>versao_contrato: 1</code>) e o <code>tarifa_vigente.env</code> trazem exatamente as variáveis que o MVP lê (<code>TARIFA_KWH</code>, <code>BANDEIRA</code>) e que aparecem em <code>/api/config</code> e na conta estimada da tela. Com <code>--publicar-azure</code>, o robô grava esses valores no App Service e confirma lendo <code>/api/config</code> até eles aparecerem. O mesmo contrato serve para a camada Ouro do componente de Dados (detalhes em <code>integracao-mvp/README.md</code>).</li>
 </ul>
 <div class="duas">
@@ -178,7 +178,7 @@
 <figure><img src="../assets/06-alertas-ntfy.png" alt="alertas ntfy"><figcaption>Figura 11. Alertas push reais recebidos no ntfy.sh (tópico oculto), só com o código pseudônimo da casa.</figcaption></figure>
 
 <h2>9. Testes realizados (sucesso, decisão e falha)</h2>
-<p><b>Automatizados:</b> 34 testes com <code>unittest</code> (<code>python -m unittest discover -s tests -v</code>), sem internet. As APIs são substituídas por um dublê, e o cliente HTTP é testado contra um servidor local real. Todos passam no Linux e no Windows (Python 3.12). A lista completa está em <code>tests/README.md</code>.</p>
+<p><b>Automatizados:</b> 38 testes com <code>unittest</code> (<code>python -m unittest discover -s tests -v</code>), sem internet. As APIs são substituídas por um dublê, e o cliente HTTP é testado contra um servidor local real. Todos passam no Linux e no Windows (Python 3.12). A lista completa está em <code>tests/README.md</code>.</p>
 <table>
   <tr><th style="width:13%">Tipo</th><th>Cenário</th><th style="width:30%">Resultado esperado e obtido</th></tr>
   <tr><td>Sucesso</td><td>Execução completa com todas as fontes no ar</td><td class="ok">contrato 0.9511/verde, status por casa, código 0</td></tr>

@@ -15,7 +15,7 @@ O **Conta Clara** ajuda famílias de baixa renda a entender a conta de luz. A fa
 | | |
 |---|---|
 | **MVP** | https://contaclara-gs.azurewebsites.net (repositório: https://github.com/ph-tavares/conta-clara) |
-| **Vídeo** | LINK-DO-VIDEO |
+| **Vídeo** | https://youtu.be/SOYqpsIRzj4 |
 | **Relatório (PDF)** | [`docs/relatorio-rpa.pdf`](docs/relatorio-rpa.pdf) |
 | **Processo (BPMN e PDD)** | [`docs/processo.bpmn`](docs/processo.bpmn), [`docs/PDD.md`](docs/PDD.md) |
 
@@ -69,7 +69,7 @@ cd conta-clara-rpa
 
 python src/executar.py                              # competência do mês atual
 python src/executar.py --competencia 2026-12        # outra competência
-python -m unittest discover -s tests -v             # 34 testes (sem internet)
+python -m unittest discover -s tests -v             # 38 testes (sem internet)
 ```
 
 No Windows, use `py` no lugar de `python` se for o caso.
