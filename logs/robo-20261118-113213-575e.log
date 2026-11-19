@@ -1,0 +1,10 @@
+2026-11-18 11:32:13 | INFO    | robo          | === Robo Conta Clara | execucao 20261118-113213-575e | competencia 2026-11 ===
+2026-11-18 11:32:13 | WARNING | robo          | MODO DE TESTE: simulando falha em 'aneel'
+2026-11-18 11:32:13 | WARNING | robo.http     | tentativa 1/3 falhou (ANEEL bandeira: URLError ([Errno 8] nodename nor servname provided, or not known)); nova tentativa em 2 s
+2026-11-18 11:32:15 | WARNING | robo.http     | tentativa 2/3 falhou (ANEEL bandeira: URLError ([Errno 8] nodename nor servname provided, or not known)); nova tentativa em 4 s
+2026-11-18 11:32:19 | ERROR   | robo.http     | desistindo depois de 3 tentativas: ANEEL bandeira: URLError ([Errno 8] nodename nor servname provided, or not known)
+2026-11-18 11:32:19 | ERROR   | robo          | ANEEL indisponivel ou com dado invalido: ANEEL bandeira: URLError ([Errno 8] nodename nor servname provided, or not known)
+2026-11-18 11:32:19 | CRITICAL | robo          | FALHA CRITICA: sem tarifa confiavel (sem cache local da ANEEL). Nada sera publicado nem alertado.
+2026-11-18 11:32:19 | INFO    | robo          | === Fim: FALHA_CRITICA (codigo 2) | 0 casa(s) | por status {} | 0 alerta(s) | 0 linha(s) rejeitada(s) ===
+2026-11-18 11:32:19 | ERROR   | robo          | Erro: ANEEL fora e sem cache valido: sem cache local da ANEEL
+2026-11-18 11:32:19 | INFO    | robo          | Saidas em saida/simulacoes/aneel/2026-11/ | log em logs/robo-20261118-113213-575e.log | auditoria em logs/auditoria.jsonl

@@ -1,10 +1,10 @@
 ﻿competencia;casa;origem;leituras_validas;dias_observados;consumo_diario_kwh;projecao_30d_kwh;valor_config_atual_mvp;valor_estimado_reais;variacao_reais;limite_reais;status;alerta;detalhe
-2026-11;MVP-DEMO;mvp;5;28;5.75;172.5;161.95;164.06;2.11;150.0;ACIMA_DO_LIMITE;ja_enviado;MVP-DEMO: conta estimada de 2026-11 em R$ 164.06, acima do limite de R$ 150.00 (bandeira verde). Sugestao: anotar nova leitura e rever aparelhos de maior consumo.
-2026-11;CASA-001;mutirao;5;28;3.0;90.0;84.5;74.78;-9.72;120.0;OK;nao;
-2026-11;CASA-002;mutirao;5;28;7.11;213.2;200.16;218.57;18.41;180.0;ACIMA_DO_LIMITE;ja_enviado;CASA-002: conta estimada de 2026-11 em R$ 218.57, acima do limite de R$ 180.00 (bandeira verde). Sugestao: anotar nova leitura e rever aparelhos de maior consumo.
-2026-11;CASA-003;mutirao;5;28;4.61;138.2;129.75;131.44;1.69;140.0;OK;nao;
+2026-11;MVP-DEMO;mvp;5;28;5.75;172.5;164.06;164.06;0.0;150.0;ACIMA_DO_LIMITE;ja_enviado;MVP-DEMO: conta estimada de 2026-11 em R$ 164.06, acima do limite de R$ 150.00 (bandeira verde). Sugestao: anotar nova leitura e rever aparelhos de maior consumo.
+2026-11;CASA-001;mutirao;5;28;3.0;90.0;85.6;74.78;-10.82;120.0;OK;nao;
+2026-11;CASA-002;mutirao;5;28;7.11;213.2;202.77;218.57;15.8;180.0;ACIMA_DO_LIMITE;ja_enviado;CASA-002: conta estimada de 2026-11 em R$ 218.57, acima do limite de R$ 180.00 (bandeira verde). Sugestao: anotar nova leitura e rever aparelhos de maior consumo.
+2026-11;CASA-003;mutirao;5;28;4.61;138.2;131.44;131.44;0.0;140.0;OK;nao;
 2026-11;CASA-004;mutirao;1;0;;;;;;130.0;DADOS_INSUFICIENTES;nao;precisa de 2 leituras em dias diferentes
-2026-11;CASA-005;mutirao;5;28;5.0;150.0;140.83;142.66;1.83;200.0;OK;nao;
-2026-11;CASA-006;mutirao;4;28;2.5;75.0;70.41;62.32;-8.09;100.0;OK;nao;
-2026-11;CASA-007;mutirao;4;21;6.0;180.0;168.99;171.2;2.21;170.0;ACIMA_DO_LIMITE;ja_enviado;CASA-007: conta estimada de 2026-11 em R$ 171.20, acima do limite de R$ 170.00 (bandeira verde). Sugestao: anotar nova leitura e rever aparelhos de maior consumo.
+2026-11;CASA-005;mutirao;5;28;5.0;150.0;142.66;142.66;0.0;200.0;OK;nao;
+2026-11;CASA-006;mutirao;4;28;2.5;75.0;71.33;62.32;-9.01;100.0;OK;nao;
+2026-11;CASA-007;mutirao;4;21;6.0;180.0;171.2;171.2;0.0;170.0;ACIMA_DO_LIMITE;ja_enviado;CASA-007: conta estimada de 2026-11 em R$ 171.20, acima do limite de R$ 170.00 (bandeira verde). Sugestao: anotar nova leitura e rever aparelhos de maior consumo.
 2026-11;CASA-008;mutirao;1;0;;;;;;150.0;DADOS_INSUFICIENTES;nao;precisa de 2 leituras em dias diferentes
